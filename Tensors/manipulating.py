@@ -53,3 +53,7 @@ print(f"The tensor4 is: {tensor4}")
 
 result_matrix_mul = torch.matmul(tensor3, tensor4)
 print(f"The result of dot product is: {result_matrix_mul}")
+
+# There are tow main rules that performing matrix multiplication must satisfy:
+# 1. **Inner dimensions** must match
+# 2. The resulting matrix has the shape of the **outer dimensions**
