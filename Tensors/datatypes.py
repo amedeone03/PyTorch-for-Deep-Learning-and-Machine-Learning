@@ -15,6 +15,13 @@ print(float_16_tensor)
 # Let's multiply the tensors
 print(float_32_tensor * float_16_tensor)
 
-# Tensor operations 
+# Tensor operations with the same datatype
 int_32_tensor = torch.tensor([3, 6, 9], dtype=torch.int32)
 print(int_32_tensor * float_32_tensor)
+
+# To sum up, let's get the information from tensors
+some_tensor = torch.rand(3, 4)
+print(f"The tensor is: {some_tensor}")
+print(f"Datatype of tensor: {some_tensor.dtype} ")
+print(f"Shape of the tensor: {some_tensor.shape}")
+print(f"Device tensor is on: {some_tensor.device}")
