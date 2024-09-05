@@ -10,3 +10,13 @@ python3 label_image.py \
   --model_file /home/ubuntu/Desktop/sample/mobilenet_v1_1.0_224.tflite \
   --label_file /home/ubuntu/Desktop/sample/labels.txt \
   --image /home/ubuntu/Desktop/sample/grace_hopper.bmp
+
+import tensorflow as tf
+print("TensorFlow version:", tf.__version__)
+
+# Check TensorFlow Lite availability
+try:
+    interpreter = tf.lite.Interpreter(model_path="path_to_your_model.tflite")
+    print("TensorFlow Lite is installed correctly!")
+except Exception as e:
+    print(f"TensorFlow Lite encountered an issue: {e}")
