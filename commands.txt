@@ -20,3 +20,12 @@ try:
     print("TensorFlow Lite is installed correctly!")
 except Exception as e:
     print(f"TensorFlow Lite encountered an issue: {e}")
+
+ubuntu@mtk-genio:~/Desktop/test$ python3 label_image.py \
+  --model_file /home/ubuntu/Desktop/sample/mobilenet_v1_1.0_224.tflite \
+  --label_file /home/ubuntu/Desktop/sample/labels.txt \
+  --image /home/ubuntu/Desktop/sample/grace_hopper.bmp
+Traceback (most recent call last):
+  File "/home/ubuntu/Desktop/test/label_image.py", line 88, in <module>
+    interpreter = tf.lite.Interpreter(
+NameError: name 'tf' is not defined
