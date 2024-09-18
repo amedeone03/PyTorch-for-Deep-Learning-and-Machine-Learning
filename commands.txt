@@ -35,4 +35,16 @@ cmake .. -DARMCOMPUTE_ROOT=/path/to/ComputeLibrary \
          -DBOOST_ROOT=/path/to/boost \
          -DPROTOBUF_ROOT=/path/to/protobuf \
          -DFLATBUFFERS_ROOT=/path/to/flatbuffers \
+
+
+
+mkdir build
+cd build
+cmake .. -DARMCOMPUTE_ROOT=/home/usr/ComputeLibrary \
+         -DARMCOMPUTE_BUILD_DIR=/home/usr/ComputeLibrary/build \
+         -DBOOST_ROOT=/usr/include/boost \
+         -DPROTOBUF_ROOT=/usr/include/google/protobuf \
+         -DFLATBUFFERS_ROOT=/usr/local/include/flatbuffers \
+         -DBUILD_TF_LITE_DELEGATE=1
+
          -DBUILD_TF_LITE_DELEGATE=1
