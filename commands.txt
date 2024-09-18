@@ -3,5 +3,10 @@ sudo apt-get install libopenblas-dev libhdf5-serial-dev
 
 scons
 
+sudo cp build/libarmnnDelegate.so /usr/lib/
+
 
 sudo cp build/libarmnnDelegate.so /usr/lib/
+
+ubuntu@mtk-genio:/usr/lib$ sudo cp build/libarmnnDelegate.so /usr/lib/
+cp: cannot stat 'build/libarmnnDelegate.so': No such file or directory
