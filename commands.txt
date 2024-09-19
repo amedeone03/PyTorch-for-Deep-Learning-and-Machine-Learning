@@ -1,3 +1,14 @@
 ubuntu@mtk-genio:/$ bazel build -c opt --config=elinux_arm --config=gl //tensorflow/lite/delegates/gpu:libtensorflowlite_gpu_delegate.so
 bash: /usr/local/bin/bazel: cannot execute binary file: Exec format error
 
+
+
+git clone https://github.com/bazelbuild/bazelisk.git
+cd bazelisk
+
+go build -o bazelisk
+
+sudo mv bazelisk /usr/local/bin/bazel
+sudo chmod +x /usr/local/bin/bazel
+
+bazel build -c opt --config=elinux_arm --config=gl //tensorflow/lite/delegates/gpu:libtensorflowlite_gpu_delegate.so
