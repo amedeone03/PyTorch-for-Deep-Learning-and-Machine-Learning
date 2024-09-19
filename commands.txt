@@ -1,3 +1,8 @@
 ubuntu@mtk-genio:~/Desktop/test/tensorflow$ bazel build -c opt --config=gl //tensorflow/lite/delegates/gpu:libtensorflowlite_gpu_delegate.so
 ERROR: Config value 'gl' is not defined in any .rc file
 
+
+bazel build -c opt //tensorflow/lite/delegates/gpu:libtensorflowlite_gpu_delegate.so
+sudo apt-get install libgles2-mesa-dev libegl1-mesa-dev
+bazel build -c opt --copt=-DEGL_ENABLED --copt=-DGL_GLEXT_PROTOTYPES //tensorflow/lite/delegates/gpu:libtensorflowlite_gpu_delegate.so
+bazel-bin/tensorflow/lite/delegates/gpu/libtensorflowlite_gpu_delegate.so
