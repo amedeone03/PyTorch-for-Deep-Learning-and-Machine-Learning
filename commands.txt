@@ -22,3 +22,20 @@ Use --verbose_failures to see the command lines of failed build steps.
 INFO: Elapsed time: 177.569s, Critical Path: 1.08s
 INFO: 140 processes: 137 internal, 3 local.
 FAILED: Build did NOT complete successfully
+
+
+DEBUG
+sudo apt-get update
+sudo apt-get install libgles2-mesa-dev libegl1-mesa-dev mesa-common-dev
+
+ls /usr/include/EGL/egl.h
+
+bazel clean
+bazel build -c opt //tensorflow/lite/delegates/gpu:libtensorflowlite_gpu_delegate.so
+
+bazel-bin/tensorflow/lite/delegates/gpu/libtensorflowlite_gpu_delegate.so
+
+python3 label_image.py --label_file labels.txt --image grace_hopper.bmp --model_file mobilenet_v1_1.0_224_quant.tflite -e /path/to/libtensorflowlite_gpu_delegate.so
+
+
+
