@@ -72,5 +72,23 @@ Building dependency tree... Done
 Reading state information... Done
 E: Unable to locate package bazel
 
+--------------------------------------------
+ubuntu@mtk-genio:/$ sudo apt-get install curl
+curl -LO "https://github.com/bazelbuild/bazelisk/releases/download/v1.10.1/bazelisk-linux-amd64"
+sudo mv bazelisk-linux-amd64 /usr/local/bin/bazel
+sudo chmod +x /usr/local/bin/bazel
+Reading package lists... Done
+Building dependency tree... Done
+Reading state information... Done
+curl is already the newest version (7.81.0-1ubuntu1.18).
+0 upgraded, 0 newly installed, 0 to remove and 132 not upgraded.
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0Warning: Failed to create the file bazelisk-linux-amd64: Permission denied
+  0 5032k    0  1413    0     0   1323      0  1:04:54  0:00:01  1:04:53  2956
+curl: (23) Failure writing output to destination
+mv: cannot stat 'bazelisk-linux-amd64': No such file or directory
+chmod: cannot access '/usr/local/bin/bazel': No such file or directory
 
 
