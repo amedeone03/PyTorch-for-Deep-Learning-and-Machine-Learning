@@ -21,4 +21,8 @@ python3 label_image.py --model_file your_model.tflite --image your_image.jpg --l
 
 
 ubuntu@mtk-genio:~/Desktop/test/tensorflow$ bazel build -c opt --config=elinux_arm --config=gl //tensorflow/lite/delegates/gpu:libtensorflowlite_gpu_delegate.so
-bash: /usr/bin/bazel: No such file or directory
+2024/09/19 10:04:34 Downloading https://releases.bazel.build/6.5.0/release/bazel-6.5.0-linux-arm64...
+Downloading: 153 MB out of 153 MB (100%)
+Extracting Bazel installation...
+Starting local Bazel server and connecting to it...
+ERROR: Config value 'elinux_arm' is not defined in any .rc file
