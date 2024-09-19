@@ -334,4 +334,14 @@ ICD loader properties
   ICD loader Version                              2.2.14
   ICD loader Profile                              OpenCL 3.0
 
+INSTALLING GPU DELEGATE
+git clone https://github.com/tensorflow/tensorflow.git
+cd tensorflow
+sudo apt-get install bazel
+./configure
+bazel build -c opt --config=elinux_arm --config=gl //tensorflow/lite/delegates/gpu:libtensorflowlite_gpu_delegate.so
+sudo cp bazel-bin/tensorflow/lite/delegates/gpu/libtensorflowlite_gpu_delegate.so /usr/lib/
+python3 label_image.py --label_file labels_mobilenet_quant_v1_224.txt --image grace_hopper.jpg --model_file mobilenet_v1_1.0_224_quant.tflite -e /usr/lib/libtensorflowlite_gpu_delegate.so
+
+
 
