@@ -1,50 +1,19 @@
-sudo apt-get install scons libboost-all-dev libprotobuf-dev protobuf-compiler
-sudo apt-get install libopenblas-dev libhdf5-serial-dev
-
-scons
-
-sudo cp build/libarmnnDelegate.so /usr/lib/
-
-
-sudo cp build/libarmnnDelegate.so /usr/lib/
-
-ubuntu@mtk-genio:/usr/lib$ sudo cp build/libarmnnDelegate.so /usr/lib/
-cp: cannot stat 'build/libarmnnDelegate.so': No such file or directory
-
-sudo apt-get update
-sudo apt-get install scons cmake git wget unzip
-sudo apt-get install libboost-all-dev libprotobuf-dev protobuf-compiler
-sudo apt-get install libopenblas-dev libhdf5-serial-dev libssl-dev
-sudo apt-get install python3-dev python3-pip
-
-git clone https://github.com/tensorflow/tensorflow.git
-cd tensorflow
-git checkout r2.4  # Choose the version you're working with
-
-git clone https://github.com/google/flatbuffers.git
-cd flatbuffers
-cmake -G "Unix Makefiles"
-make
-sudo make install
-
-cd armnn  # Go back to the ARM NN directory
-mkdir build
-cd build
-cmake .. -DARMCOMPUTE_ROOT=/path/to/ComputeLibrary \
-         -DARMCOMPUTE_BUILD_DIR=/path/to/ComputeLibrary/build \
-         -DBOOST_ROOT=/path/to/boost \
-         -DPROTOBUF_ROOT=/path/to/protobuf \
-         -DFLATBUFFERS_ROOT=/path/to/flatbuffers \
-
-
-
-mkdir build
-cd build
-cmake .. -DARMCOMPUTE_ROOT=/home/usr/ComputeLibrary \
-         -DARMCOMPUTE_BUILD_DIR=/home/usr/ComputeLibrary/build \
-         -DBOOST_ROOT=/usr/include/boost \
-         -DPROTOBUF_ROOT=/usr/include/google/protobuf \
-         -DFLATBUFFERS_ROOT=/usr/local/include/flatbuffers \
-         -DBUILD_TF_LITE_DELEGATE=1
-
-         -DBUILD_TF_LITE_DELEGATE=1
+ubuntu@mtk-genio:~/Desktop/test$ python3 label_image.py --label_file labels_mobilenet_quant_v1_224.txt --image grace_hopper.jpg --model_file mobilenet_v1_1.0_224_quant.tflite -e /usr/lib/gpu_external_delegate.so
+Loading external delegate from /usr/lib/gpu_external_delegate.so with args: {}
+Traceback (most recent call last):
+  File "/home/ubuntu/Desktop/test/label_image.py", line 69, in <module>
+    tflite.load_delegate(args.ext_delegate, ext_delegate_options)
+  File "/home/ubuntu/.local/lib/python3.10/site-packages/tflite_runtime/interpreter.py", line 166, in load_delegate
+    delegate = Delegate(library, options)
+  File "/home/ubuntu/.local/lib/python3.10/site-packages/tflite_runtime/interpreter.py", line 73, in __init__
+    self._library = ctypes.pydll.LoadLibrary(library)
+  File "/usr/lib/python3.10/ctypes/__init__.py", line 452, in LoadLibrary
+    return self._dlltype(name)
+  File "/usr/lib/python3.10/ctypes/__init__.py", line 374, in __init__
+    self._handle = _dlopen(self._name, mode)
+OSError: /usr/lib/gpu_external_delegate.so: cannot open shared object file: No such file or directory
+Exception ignored in: <function Delegate.__del__ at 0xffff7ad1f400>
+Traceback (most recent call last):
+  File "/home/ubuntu/.local/lib/python3.10/site-packages/tflite_runtime/interpreter.py", line 109, in __del__
+    if self._library is not None:
+AttributeError: 'Delegate' object has no attribute '_library'
