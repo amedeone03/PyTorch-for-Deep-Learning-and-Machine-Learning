@@ -11,3 +11,9 @@ python3 label_image.py \
   --image grace_hopper.bmp \
   --model_file mobilenet_v1_1.0_224_quant.tflite \
   -e /usr/lib/libtensorflowlite_gpu_delegate.so
+
+
+ubuntu@mtk-genio:/usr/lib$ find / -name "libtensorflowlite_gpu_delegate.so" 2>/dev/null
+/home/ubuntu/.cache/bazel/_bazel_ubuntu/286268e0360a13f86815053a68364655/execroot/org_tensorflow/bazel-out/aarch64-opt/bin/tensorflow/lite/delegates/gpu/libtensorflowlite_gpu_delegate.so.runfiles/org_tensorflow/tensorflow/lite/delegates/gpu/libtensorflowlite_gpu_delegate.so
+/home/ubuntu/.cache/bazel/_bazel_ubuntu/286268e0360a13f86815053a68364655/execroot/org_tensorflow/bazel-out/aarch64-opt/bin/tensorflow/lite/delegates/gpu/libtensorflowlite_gpu_delegate.so
+/usr/lib/libtensorflowlite_gpu_delegate.so
