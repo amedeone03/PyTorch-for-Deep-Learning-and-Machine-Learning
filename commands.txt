@@ -17,3 +17,8 @@ bazel build -c opt --config=elinux_arm --config=gl //tensorflow/lite/delegates/g
 bazel build -c opt --config=elinux_arm --config=gl //tensorflow/lite/delegates/gpu:libtensorflowlite_gpu_delegate.so
 ls bazel-bin/tensorflow/lite/delegates/gpu/
 python3 label_image.py --model_file your_model.tflite --image your_image.jpg --label_file your_labels.txt -e bazel-bin/tensorflow/lite/delegates/gpu/libtensorflowlite_gpu_delegate.so
+
+
+
+ubuntu@mtk-genio:~/Desktop/test/tensorflow$ bazel build -c opt --config=elinux_arm --config=gl //tensorflow/lite/delegates/gpu:libtensorflowlite_gpu_delegate.so
+bash: /usr/bin/bazel: No such file or directory
