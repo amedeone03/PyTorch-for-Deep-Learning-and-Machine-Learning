@@ -20,3 +20,7 @@ AttributeError: 'Delegate' object has no attribute '_library'
 
 ubuntu@mtk-genio:/usr/lib$ find / -name gpu_external_delegate.so 2>dev/null
 bash: dev/null: No such file or directory
+
+ubuntu@mtk-genio:/$ find / -name gpu_external_delegate.so 2>/dev/null
+ubuntu@mtk-genio:/$ 
+
