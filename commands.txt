@@ -31,9 +31,17 @@ ldconfig -p | grep libGL
 glxinfo | grep "OpenGL ES"
 
 
+python3 label_image.py \
+  --label_file labels.txt \
+  --image grace_hopper.bmp \
+  --model_file mobilenet_v1_1.0_224_quant.tflite \
+  -e /usr/lib/libtensorflowlite_gpu_delegate.so
+
+clinfo
 
 
 
+---------------------------------------------------------------------------------------------------------------------------
 ubuntu@mtk-genio:/$ ldconfig -p | grep libGL
 	libGLdispatch.so.0 (libc6,AArch64) => /lib/aarch64-linux-gnu/libGLdispatch.so.0
 	libGLdispatch.so (libc6,AArch64) => /lib/aarch64-linux-gnu/libGLdispatch.so
