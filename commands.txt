@@ -21,3 +21,7 @@ echo "deb [arch=amd64] https://storage.googleapis.com/bazel-apt stable jdk1.8" |
 sudo apt-get update
 sudo apt-get install bazel
 bazel --version
+
+buntu@mtk-genio:/$ bazel --version
+bazel 3.5.1- (@non-git)
+
