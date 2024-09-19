@@ -25,3 +25,11 @@ bazel --version
 buntu@mtk-genio:/$ bazel --version
 bazel 3.5.1- (@non-git)
 
+ubuntu@mtk-genio:~/Desktop/test/tensorflow$ bazel build -c opt --config=elinux_arm --config=gl //tensorflow/lite/delegates/gpu:libtensorflowlite_gpu_delegate.so
+ERROR: The project you're trying to build requires Bazel 6.5.0 (specified in /home/ubuntu/Desktop/test/tensorflow/.bazelversion), but it wasn't found in /usr/bin.
+
+You can install the required Bazel version via apt:
+  sudo apt update && sudo apt install bazel-6.5.0
+
+If this doesn't work, check Bazel's installation instructions for help:
+  https://docs.bazel.build/versions/master/install-ubuntu.html
