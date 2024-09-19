@@ -6,3 +6,19 @@ bazel build -c opt //tensorflow/lite/delegates/gpu:libtensorflowlite_gpu_delegat
 sudo apt-get install libgles2-mesa-dev libegl1-mesa-dev
 bazel build -c opt --copt=-DEGL_ENABLED --copt=-DGL_GLEXT_PROTOTYPES //tensorflow/lite/delegates/gpu:libtensorflowlite_gpu_delegate.so
 bazel-bin/tensorflow/lite/delegates/gpu/libtensorflowlite_gpu_delegate.so
+
+
+
+
+ERROR: /home/ubuntu/Desktop/test/tensorflow/tensorflow/lite/delegates/gpu/gl/BUILD:326:11: Compiling tensorflow/lite/delegates/gpu/gl/gl_texture_helper.cc failed: (Exit 1): clang failed: error executing command (from target //tensorflow/lite/delegates/gpu/gl:gl_texture_helper) /usr/lib/llvm-14/bin/clang -U_FORTIFY_SOURCE -fstack-protector -Wall -Wthread-safety -Wself-assign -Wunused-but-set-parameter -Wno-free-nonheap-object -fcolor-diagnostics -fno-omit-frame-pointer -g0 ... (remaining 42 arguments skipped)
+In file included from tensorflow/lite/delegates/gpu/gl/gl_texture_helper.cc:16:
+In file included from ./tensorflow/lite/delegates/gpu/gl/gl_texture_helper.h:20:
+./tensorflow/lite/delegates/gpu/gl/portable_gl31.h:21:10: fatal error: 'EGL/egl.h' file not found
+#include <EGL/egl.h>
+         ^~~~~~~~~~~
+1 error generated.
+Target //tensorflow/lite/delegates/gpu:libtensorflowlite_gpu_delegate.so failed to build
+Use --verbose_failures to see the command lines of failed build steps.
+INFO: Elapsed time: 177.569s, Critical Path: 1.08s
+INFO: 140 processes: 137 internal, 3 local.
+FAILED: Build did NOT complete successfully
