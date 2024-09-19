@@ -1,28 +1,23 @@
-ubuntu@mtk-genio:/$ find / -name "libtensorflowlite_gpu_delegate.so" 2>/dev/null
-/home/ubuntu/.cache/bazel/_bazel_ubuntu/286268e0360a13f86815053a68364655/execroot/org_tensorflow/bazel-out/aarch64-opt/bin/tensorflow/lite/delegates/gpu/libtensorflowlite_gpu_delegate.so.runfiles/org_tensorflow/tensorflow/lite/delegates/gpu/libtensorflowlite_gpu_delegate.so
-/home/ubuntu/.cache/bazel/_bazel_ubuntu/286268e0360a13f86815053a68364655/execroot/org_tensorflow/bazel-out/aarch64-opt/bin/tensorflow/lite/delegates/gpu/libtensorflowlite_gpu_delegate.so
-
-
-
-sudo cp /home/ubuntu/.cache/bazel/_bazel_ubuntu/286268e0360a13f86815053a68364655/execroot/org_tensorflow/bazel-out/aarch64-opt/bin/tensorflow/lite/delegates/gpu/libtensorflowlite_gpu_delegate.so /usr/lib/
-
-python3 label_image.py \
+ubuntu@mtk-genio:~/Desktop/test$ python3 label_image.py \
   --label_file labels.txt \
   --image grace_hopper.bmp \
   --model_file mobilenet_v1_1.0_224_quant.tflite \
   -e /usr/lib/libtensorflowlite_gpu_delegate.so
-
-
-ubuntu@mtk-genio:/usr/lib$ find / -name "libtensorflowlite_gpu_delegate.so" 2>/dev/null
-/home/ubuntu/.cache/bazel/_bazel_ubuntu/286268e0360a13f86815053a68364655/execroot/org_tensorflow/bazel-out/aarch64-opt/bin/tensorflow/lite/delegates/gpu/libtensorflowlite_gpu_delegate.so.runfiles/org_tensorflow/tensorflow/lite/delegates/gpu/libtensorflowlite_gpu_delegate.so
-/home/ubuntu/.cache/bazel/_bazel_ubuntu/286268e0360a13f86815053a68364655/execroot/org_tensorflow/bazel-out/aarch64-opt/bin/tensorflow/lite/delegates/gpu/libtensorflowlite_gpu_delegate.so
-/usr/lib/libtensorflowlite_gpu_delegate.so
-
-
-
-
-python3 label_image.py \
-  --label_file labels.txt \
-  --image grace_hopper.bmp \
-  --model_file mobilenet_v1_1.0_224_quant.tflite \
-  -e /usr/lib/libtensorflowlite_gpu_delegate.so
+Loading external delegate from /usr/lib/libtensorflowlite_gpu_delegate.so with args: {}
+Traceback (most recent call last):
+  File "/home/ubuntu/Desktop/test/label_image.py", line 69, in <module>
+    tflite.load_delegate(args.ext_delegate, ext_delegate_options)
+  File "/home/ubuntu/.local/lib/python3.10/site-packages/tflite_runtime/interpreter.py", line 166, in load_delegate
+    delegate = Delegate(library, options)
+  File "/home/ubuntu/.local/lib/python3.10/site-packages/tflite_runtime/interpreter.py", line 73, in __init__
+    self._library = ctypes.pydll.LoadLibrary(library)
+  File "/usr/lib/python3.10/ctypes/__init__.py", line 452, in LoadLibrary
+    return self._dlltype(name)
+  File "/usr/lib/python3.10/ctypes/__init__.py", line 374, in __init__
+    self._handle = _dlopen(self._name, mode)
+OSError: /usr/lib/libtensorflowlite_gpu_delegate.so: undefined symbol: glShaderSource
+Exception ignored in: <function Delegate.__del__ at 0xffff74e5f400>
+Traceback (most recent call last):
+  File "/home/ubuntu/.local/lib/python3.10/site-packages/tflite_runtime/interpreter.py", line 109, in __del__
+    if self._library is not None:
+AttributeError: 'Delegate' object has no attribute '_library'
