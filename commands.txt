@@ -24,3 +24,9 @@ bash: dev/null: No such file or directory
 ubuntu@mtk-genio:/$ find / -name gpu_external_delegate.so 2>/dev/null
 ubuntu@mtk-genio:/$ 
 
+ubuntu@mtk-genio:/usr/lib$ sudo apt-get install libvulkan1 vulkan-utils
+Reading package lists... Done
+Building dependency tree... Done
+Reading state information... Done
+E: Unable to locate package vulkan-utils
+
