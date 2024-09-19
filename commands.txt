@@ -33,3 +33,14 @@ You can install the required Bazel version via apt:
 
 If this doesn't work, check Bazel's installation instructions for help:
   https://docs.bazel.build/versions/master/install-ubuntu.html
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+curl https://bazel.build/bazel-release.pub.gpg | sudo apt-key add -
+echo "deb [arch=amd64] https://storage.googleapis.com/bazel-apt stable jdk1.8" | sudo tee /etc/apt/sources.list.d/bazel.list
+sudo apt-get update
+sudo apt-get install bazel-6.5.0
+bazel --version
+
+
+bazel build -c opt --config=elinux_arm --config=gl //tensorflow/lite/delegates/gpu:libtensorflowlite_gpu_delegate.so
+
+sudo cp bazel-bin/tensorflow/lite/delegates/gpu/libtensorflowlite_gpu_delegate.so /usr/lib/
