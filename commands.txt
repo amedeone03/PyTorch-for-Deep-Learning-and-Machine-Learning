@@ -44,3 +44,13 @@ bazel --version
 bazel build -c opt --config=elinux_arm --config=gl //tensorflow/lite/delegates/gpu:libtensorflowlite_gpu_delegate.so
 
 sudo cp bazel-bin/tensorflow/lite/delegates/gpu/libtensorflowlite_gpu_delegate.so /usr/lib/
+
+
+
+ubuntu@mtk-genio:/$ sudo apt install bazel-6.5.0
+Reading package lists... Done
+Building dependency tree... Done
+Reading state information... Done
+E: Unable to locate package bazel-6.5.0
+E: Couldn't find any package by glob 'bazel-6.5.0'
+
