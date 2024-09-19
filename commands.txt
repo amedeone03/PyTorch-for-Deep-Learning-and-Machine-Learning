@@ -26,3 +26,22 @@ Downloading: 153 MB out of 153 MB (100%)
 Extracting Bazel installation...
 Starting local Bazel server and connecting to it...
 ERROR: Config value 'elinux_arm' is not defined in any .rc file
+
+
+
+
+bazel build -c opt --config=gl //tensorflow/lite/delegates/gpu:libtensorflowlite_gpu_delegate.so
+
+
+build:elinux_arm --config=arm
+build:elinux_arm --cpu=arm64
+
+bazel build -c opt --config=elinux_arm --config=gl //tensorflow/lite/delegates/gpu:libtensorflowlite_gpu_delegate.so
+
+sudo apt-get install libgles2-mesa-dev libegl1-mesa-dev
+
+
+
+
+
+
