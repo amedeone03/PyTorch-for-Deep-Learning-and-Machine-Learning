@@ -37,4 +37,8 @@ Reading state information... Done
 libvulkan1 is already the newest version (1.3.204.1-2).
 0 upgraded, 0 newly installed, 0 to remove and 132 not upgraded.
 
+ubuntu@mtk-genio:/usr/lib$ vulkaninfo
+Segmentation fault (core dumped)
+
+
 
