@@ -92,3 +92,9 @@ mv: cannot stat 'bazelisk-linux-amd64': No such file or directory
 chmod: cannot access '/usr/local/bin/bazel': No such file or directory
 
 
+
+ubuntu@mtk-genio:/$ bazel build -c opt --config=elinux_arm --config=gl //tensorflow/lite/delegates/gpu:libtensorflowlite_gpu_delegate.so
+bash: /usr/bin/bazel: No such file or directory
+
+
+
