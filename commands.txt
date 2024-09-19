@@ -7,5 +7,11 @@ bazel build -c opt --config=elinux_arm --config=gl //tensorflow/lite/delegates/g
 sudo cp bazel-bin/tensorflow/lite/delegates/gpu/libtensorflowlite_gpu_delegate.so /usr/lib/
 python3 label_image.py --label_file labels_mobilenet_quant_v1_224.txt --image grace_hopper.jpg --model_file mobilenet_v1_1.0_224_quant.tflite -e /usr/lib/libtensorflowlite_gpu_delegate.so
 
+ubuntu@mtk-genio:~/Desktop/test/tensorflow$ sudo apt-get install bazel
+[sudo] password for ubuntu: 
+Reading package lists... Done
+Building dependency tree... Done
+Reading state information... Done
+E: Unable to locate package bazel
 
 
