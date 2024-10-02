@@ -18,3 +18,7 @@
    python3 benchmark.py --file /home/ubuntu/model.onnx --target vpu --count 100 --profile
     ```
 
+--------------------------------------------
+/home/ubuntu/Desktop/test/yolov5x.onnx
+
+/home/ubuntu/Desktop/test/yolov5x.tflite
