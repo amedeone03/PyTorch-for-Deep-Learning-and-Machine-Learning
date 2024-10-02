@@ -65,6 +65,15 @@ ncc-tflite -arch mdla_3.0 /home/ubuntu/Desktop/test/yolov5x.tflite -o /tmp/yolov
 
 ncc-tflite --arch=?
 
+-----------------------------------------------
+
+ubuntu@mtk-genio:~$ ncc-tflite -arch mdla_3.0 /home/ubuntu/Desktop/test/yolov5x.tflite -o /home/ubuntu/Desktop/test/yolov5x-mdla_3.0.dla --relax-fp32
+ERROR: An unrecognized target: mdla_3.0
+ERROR: Use --arch=? to show available targets
+ubuntu@mtk-genio:~$ ncc-tflite -arch vpu /home/ubuntu/Desktop/test/yolov5x.tflite -o /home/ubuntu/Desktop/test/yolov5x-vpu.dla
+ERROR: An unrecognized target: vpu
+ERROR: Use --arch=? to show available targets
+
 
 
 
