@@ -1,102 +1,11 @@
-1. **MDLA 3.0 Backend (TFLite)**:
-    ```bash
-    python3 benchmark.py --file /home/ubuntu/model.tflite --target mdla_3.0 --count 100 --profile
-    ```
-
-2. **VPU Backend (TFLite)**:
-    ```bash
-    python3 benchmark.py --file /home/ubuntu/model.tflite --target vpu --count 100 --profile
-    ```
-
-3. **MDLA 3.0 Backend (ONNX)**:
-   ```bash
-   python3 benchmark.py --file /home/ubuntu/model.onnx --target mdla_3.0 --count 100 --profile
-    ```
-
-4. **VPU Backend (ONNX)**:
-   ```bash
-   python3 benchmark.py --file /home/ubuntu/model.onnx --target vpu --count 100 --profile
-    ```
-
---------------------------------------------
-
-/home/ubuntu/Desktop/test/yolov5x.onnx
-
-/home/ubuntu/Desktop/test/yolov5x.tflite
-
---------------------------------------------
-
-python3 benchmark.py --file /home/ubuntu/Desktop/test/yolov5x.onnx --target mdla_3.0 --count 100
-
-python3 benchmark.py --file /home/ubuntu/Desktop/test/yolov5x.tflite --target mdla_3.0 --count 100
-
-
-ls -l /home/ubuntu/Desktop/test/yolov5x.onnx
-ls -l /home/ubuntu/Desktop/test/yolov5x.tflite
-
---------------------------------------------
-
-
-ubuntu@mtk-genio:~/Desktop/test$ python3 benchmark2.py --file /home/ubuntu/Desktop/test/yolov5x.tflite --target mdla_3.0 --count 100
+ubuntu@mtk-genio:~/Desktop/test$ python3 benchmark2.py --file /home/ubuntu/Desktop/test/yolov5x.tflite --target mdla2.0 --count 100
 Traceback (most recent call last):
-  File "/home/ubuntu/Desktop/test/benchmark2.py", line 196, in <module>
+  File "/home/ubuntu/Desktop/test/benchmark2.py", line 197, in <module>
     benchmark_tflite_model(args.file, args.target, args.count, compile_options, False, args.profile)
-  File "/home/ubuntu/Desktop/test/benchmark2.py", line 95, in benchmark_tflite_model
+  File "/home/ubuntu/Desktop/test/benchmark2.py", line 96, in benchmark_tflite_model
     tflite_2_dla(model, target, dla, compile_options)
-  File "/home/ubuntu/Desktop/test/benchmark2.py", line 89, in tflite_2_dla
+  File "/home/ubuntu/Desktop/test/benchmark2.py", line 90, in tflite_2_dla
     res = subprocess.run(batcmd, shell=True, check=True, executable='/bin/bash', stdout=subprocess.PIPE, stderr=subprocess.STDOUT, universal_newlines=True)
   File "/usr/lib/python3.10/subprocess.py", line 526, in run
     raise CalledProcessError(retcode, process.args,
-subprocess.CalledProcessError: Command 'ncc-tflite -arch mdla_3.0 /home/ubuntu/Desktop/test/yolov5x.tflite -o /home/ubuntu/Desktop/test/yolov5x-mdla_3.0.dla  --relax-fp32 ' returned non-zero exit status 1.
-
----------------------------------------------
-
-ncc-tflite -arch mdla_3.0 /home/ubuntu/Desktop/test/yolov5x.tflite -o /home/ubuntu/Desktop/test/yolov5x-mdla_3.0.dla --relax-fp32
-
-ncc-tflite -arch vpu /home/ubuntu/Desktop/test/yolov5x.tflite -o /home/ubuntu/Desktop/test/yolov5x-vpu.dla
-
-res = subprocess.run(batcmd, shell=True, check=True, executable='/bin/bash', stdout=subprocess.PIPE, stderr=subprocess.PIPE, universal_newlines=True)
-print(res.stdout)
-print(res.stderr)
-
-chmod +rwx /home/ubuntu/Desktop/test/
-
-ncc-tflite -arch mdla_3.0 /home/ubuntu/Desktop/test/yolov5x.tflite -o /tmp/yolov5x-mdla_3.0.dla --relax-fp32
-
-ncc-tflite --arch=?
-
------------------------------------------------
-
-ubuntu@mtk-genio:~$ ncc-tflite -arch mdla_3.0 /home/ubuntu/Desktop/test/yolov5x.tflite -o /home/ubuntu/Desktop/test/yolov5x-mdla_3.0.dla --relax-fp32
-ERROR: An unrecognized target: mdla_3.0
-ERROR: Use --arch=? to show available targets
-ubuntu@mtk-genio:~$ ncc-tflite -arch vpu /home/ubuntu/Desktop/test/yolov5x.tflite -o /home/ubuntu/Desktop/test/yolov5x-vpu.dla
-ERROR: An unrecognized target: vpu
-ERROR: Use --arch=? to show available targets
-
-----------------------------------------------
-
-ubuntu@mtk-genio:~$ ncc-tflite --arch=?
-Available targets:
- - mdla2.0
- - tflite_cpu
- - vpu_fpu
-
------------------------------------------------
-
-ncc-tflite -arch mdla2.0 /home/ubuntu/Desktop/test/yolov5x.tflite -o /home/ubuntu/Desktop/test/yolov5x-mdla2.0.dla --relax-fp32
-
-ncc-tflite -arch vpu_fpu /home/ubuntu/Desktop/test/yolov5x.tflite -o /home/ubuntu/Desktop/test/yolov5x-vpu_fpu.dla
-
--------------------------------------------------
-
-
-ubuntu@mtk-genio:~/Desktop/test$ python3 benchmark2.py --file /home/ubuntu/Desktop/test/yolov5x.onnx --target mdla2.0 --count 100
-Traceback (most recent call last):
-  File "/home/ubuntu/Desktop/test/benchmark2.py", line 198, in <module>
-    benchmark_onnx_model(args.file, args.count)
-  File "/home/ubuntu/Desktop/test/benchmark2.py", line 155, in benchmark_onnx_model
-    start_time = time.time()
-NameError: name 'time' is not defined
-
-
+subprocess.CalledProcessError: Command 'ncc-tflite -arch mdla2.0 /home/ubuntu/Desktop/test/yolov5x.tflite -o /home/ubuntu/Desktop/test/yolov5x-mdla2.0.dla  --relax-fp32 ' returned non-zero exit status 1.
