@@ -88,7 +88,15 @@ ncc-tflite -arch mdla2.0 /home/ubuntu/Desktop/test/yolov5x.tflite -o /home/ubunt
 
 ncc-tflite -arch vpu_fpu /home/ubuntu/Desktop/test/yolov5x.tflite -o /home/ubuntu/Desktop/test/yolov5x-vpu_fpu.dla
 
+-------------------------------------------------
 
 
+ubuntu@mtk-genio:~/Desktop/test$ python3 benchmark2.py --file /home/ubuntu/Desktop/test/yolov5x.onnx --target mdla2.0 --count 100
+Traceback (most recent call last):
+  File "/home/ubuntu/Desktop/test/benchmark2.py", line 198, in <module>
+    benchmark_onnx_model(args.file, args.count)
+  File "/home/ubuntu/Desktop/test/benchmark2.py", line 155, in benchmark_onnx_model
+    start_time = time.time()
+NameError: name 'time' is not defined
 
 
