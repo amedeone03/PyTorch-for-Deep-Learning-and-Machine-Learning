@@ -33,3 +33,18 @@ python3 benchmark.py --file /home/ubuntu/Desktop/test/yolov5x.tflite --target md
 
 ls -l /home/ubuntu/Desktop/test/yolov5x.onnx
 ls -l /home/ubuntu/Desktop/test/yolov5x.tflite
+
+--------------------------------------------
+
+
+ubuntu@mtk-genio:~/Desktop/test$ python3 benchmark2.py --file /home/ubuntu/Desktop/test/yolov5x.tflite --target mdla_3.0 --count 100
+Traceback (most recent call last):
+  File "/home/ubuntu/Desktop/test/benchmark2.py", line 196, in <module>
+    benchmark_tflite_model(args.file, args.target, args.count, compile_options, False, args.profile)
+  File "/home/ubuntu/Desktop/test/benchmark2.py", line 95, in benchmark_tflite_model
+    tflite_2_dla(model, target, dla, compile_options)
+  File "/home/ubuntu/Desktop/test/benchmark2.py", line 89, in tflite_2_dla
+    res = subprocess.run(batcmd, shell=True, check=True, executable='/bin/bash', stdout=subprocess.PIPE, stderr=subprocess.STDOUT, universal_newlines=True)
+  File "/usr/lib/python3.10/subprocess.py", line 526, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command 'ncc-tflite -arch mdla_3.0 /home/ubuntu/Desktop/test/yolov5x.tflite -o /home/ubuntu/Desktop/test/yolov5x-mdla_3.0.dla  --relax-fp32 ' returned non-zero exit status 1.
