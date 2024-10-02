@@ -204,3 +204,17 @@ else:
 
 ------------------
 python3 benchmark3.py --file /home/ubuntu/Desktop/test/yolov5x.tflite --target tflite_cpu --count 100
+
+------------------
+
+ubuntu@mtk-genio:~/Desktop/test$ python3 benchmark3.py --file /home/ubuntu/Desktop/test/yolov5x.tflite --target tflite_cpu --count 100
+Traceback (most recent call last):
+  File "/home/ubuntu/Desktop/test/benchmark3.py", line 198, in <module>
+    benchmark_tflite_model(args.file, args.target, args.count, compile_options, False, args.profile)
+  File "/home/ubuntu/Desktop/test/benchmark3.py", line 98, in benchmark_tflite_model
+    tflite_2_dla(model, target, dla, compile_options)
+  File "/home/ubuntu/Desktop/test/benchmark3.py", line 92, in tflite_2_dla
+    res = subprocess.run(batcmd, shell=True, check=True, executable='/bin/bash', stdout=subprocess.PIPE, stderr=subprocess.STDOUT, universal_newlines=True)
+  File "/usr/lib/python3.10/subprocess.py", line 526, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command 'ncc-tflite -arch tflite_cpu /home/ubuntu/Desktop/test/yolov5x.tflite -o /home/ubuntu/Desktop/test/yolov5x-tflite_cpu.dla  --relax-fp32 ' returned non-zero exit status 1.
