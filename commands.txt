@@ -1,18 +1,20 @@
-sudo apt-get install libgles2-mesa-dev libegl1-mesa-dev libgles2-mesa
+1. **MDLA 3.0 Backend (TFLite)**:
+    ```bash
+    python3 benchmark.py --file /home/ubuntu/model.tflite --target mdla_3.0 --count 100 --profile
+    ```
 
-ldconfig -p | grep GLES
+2. **VPU Backend (TFLite)**:
+    ```bash
+    python3 benchmark.py --file /home/ubuntu/model.tflite --target vpu --count 100 --profile
+    ```
 
-libGLESv2.so.2 (libc6,AArch64) => /lib/aarch64-linux-gnu/libGLESv2.so.2
-libGLESv1_CM.so.1 (libc6,AArch64) => /lib/aarch64-linux-gnu/libGLESv1_CM.so.1
+3. **MDLA 3.0 Backend (ONNX)**:
+   ```bash
+   python3 benchmark.py --file /home/ubuntu/model.onnx --target mdla_3.0 --count 100 --profile
+    ```
 
-sudo apt-get install libgles2
+4. **VPU Backend (ONNX)**:
+   ```bash
+   python3 benchmark.py --file /home/ubuntu/model.onnx --target vpu --count 100 --profile
+    ```
 
-export LD_LIBRARY_PATH=/lib/aarch64-linux-gnu:/usr/lib/aarch64-linux-gnu:$LD_LIBRARY_PATH
-
-glxinfo | grep "OpenGL ES"
-
-python3 label_image.py \
-  --label_file labels.txt \
-  --image grace_hopper.bmp \
-  --model_file mobilenet_v1_1.0_224_quant.tflite \
-  -e /usr/lib/libtensorflowlite_gpu_delegate.so
