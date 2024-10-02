@@ -74,6 +74,13 @@ ubuntu@mtk-genio:~$ ncc-tflite -arch vpu /home/ubuntu/Desktop/test/yolov5x.tflit
 ERROR: An unrecognized target: vpu
 ERROR: Use --arch=? to show available targets
 
+----------------------------------------------
+
+ubuntu@mtk-genio:~$ ncc-tflite --arch=?
+Available targets:
+ - mdla2.0
+ - tflite_cpu
+ - vpu_fpu
 
 
 
