@@ -19,3 +19,90 @@ ncc-tflite -arch mdla2.0 /path/to/mobilenet_v2.tflite -o /path/to/mobilenet_v2-m
 
 
 ncc-tflite --show-io-info /home/ubuntu/Desktop/test/yolov5x.tflite
+
+-----------------------------------------------------
+
+ubuntu@mtk-genio:~$ ncc-tflite -arch mdla2.0 /home/ubuntu/Desktop/test/yolov5x.tflite -o /home/ubuntu/Desktop/test/yolov5x-mdla2.0.dla --relax-fp32
+OP[721]: TRANSPOSE
+ ├ MDLA: the rank of shape should be in range [0, 4]
+ ├ EDMA: the rank of input tensor should be in range [0, 4]
+OP[722]: SPLIT_V
+ ├ MDLA: the rank of shape should be in range [0, 4]
+ ├ EDMA: unsupported operation
+OP[723]: MUL
+ ├ MDLA: the rank of shape should be in range [0, 4]
+ ├ EDMA: unsupported operation
+OP[724]: ADD
+ ├ MDLA: the rank of shape should be in range [0, 4]
+ ├ EDMA: unsupported operation
+OP[725]: MUL
+ ├ MDLA: the rank of shape should be in range [0, 4]
+ ├ EDMA: unsupported operation
+OP[726]: MUL
+ ├ MDLA: the rank of shape should be in range [0, 4]
+ ├ EDMA: unsupported operation
+OP[727]: POW
+ ├ MDLA: the rank of shape should be in range [0, 4]
+ ├ EDMA: unsupported operation
+OP[728]: MUL
+ ├ MDLA: the rank of shape should be in range [0, 4]
+ ├ EDMA: unsupported operation
+OP[729]: CONCATENATION
+ ├ MDLA: the rank of shape should be in range [0, 4]
+ ├ EDMA: unsupported operation
+OP[734]: TRANSPOSE
+ ├ MDLA: the rank of shape should be in range [0, 4]
+ ├ EDMA: the rank of input tensor should be in range [0, 4]
+OP[735]: SPLIT_V
+ ├ MDLA: the rank of shape should be in range [0, 4]
+ ├ EDMA: unsupported operation
+OP[736]: MUL
+ ├ MDLA: the rank of shape should be in range [0, 4]
+ ├ EDMA: unsupported operation
+OP[737]: ADD
+ ├ MDLA: the rank of shape should be in range [0, 4]
+ ├ EDMA: unsupported operation
+OP[738]: MUL
+ ├ MDLA: the rank of shape should be in range [0, 4]
+ ├ EDMA: unsupported operation
+OP[739]: MUL
+ ├ MDLA: the rank of shape should be in range [0, 4]
+ ├ EDMA: unsupported operation
+OP[740]: POW
+ ├ MDLA: the rank of shape should be in range [0, 4]
+ ├ EDMA: unsupported operation
+OP[741]: MUL
+ ├ MDLA: the rank of shape should be in range [0, 4]
+ ├ EDMA: unsupported operation
+OP[742]: CONCATENATION
+ ├ MDLA: the rank of shape should be in range [0, 4]
+ ├ EDMA: unsupported operation
+OP[747]: TRANSPOSE
+ ├ MDLA: the rank of shape should be in range [0, 4]
+ ├ EDMA: the rank of input tensor should be in range [0, 4]
+OP[748]: SPLIT_V
+ ├ MDLA: the rank of shape should be in range [0, 4]
+ ├ EDMA: unsupported operation
+OP[749]: MUL
+ ├ MDLA: the rank of shape should be in range [0, 4]
+ ├ EDMA: unsupported operation
+OP[750]: POW
+ ├ MDLA: the rank of shape should be in range [0, 4]
+ ├ EDMA: unsupported operation
+OP[751]: MUL
+ ├ MDLA: the rank of shape should be in range [0, 4]
+ ├ EDMA: unsupported operation
+OP[752]: MUL
+ ├ MDLA: the rank of shape should be in range [0, 4]
+ ├ EDMA: unsupported operation
+OP[753]: ADD
+ ├ MDLA: the rank of shape should be in range [0, 4]
+ ├ EDMA: unsupported operation
+OP[754]: MUL
+ ├ MDLA: the rank of shape should be in range [0, 4]
+ ├ EDMA: unsupported operation
+OP[755]: CONCATENATION
+ ├ MDLA: the rank of shape should be in range [0, 4]
+ ├ EDMA: unsupported operation
+ERROR: Cannot find an execution plan because of unsupported operations
+ERROR: Fail to compile /home/ubuntu/Desktop/test/yolov5x.tflite
