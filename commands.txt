@@ -82,6 +82,13 @@ Available targets:
  - tflite_cpu
  - vpu_fpu
 
+-----------------------------------------------
+
+ncc-tflite -arch mdla2.0 /home/ubuntu/Desktop/test/yolov5x.tflite -o /home/ubuntu/Desktop/test/yolov5x-mdla2.0.dla --relax-fp32
+
+ncc-tflite -arch vpu_fpu /home/ubuntu/Desktop/test/yolov5x.tflite -o /home/ubuntu/Desktop/test/yolov5x-vpu_fpu.dla
+
+
 
 
 
