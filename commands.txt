@@ -9,3 +9,11 @@ Traceback (most recent call last):
   File "/usr/lib/python3.10/subprocess.py", line 526, in run
     raise CalledProcessError(retcode, process.args,
 subprocess.CalledProcessError: Command 'ncc-tflite -arch mdla2.0 /home/ubuntu/Desktop/test/yolov5x.tflite -o /home/ubuntu/Desktop/test/yolov5x-mdla2.0.dla  --relax-fp32 ' returned non-zero exit status 1.
+------------------------------------------
+ncc-tflite --show-unsupported --arch mdla2.0 /home/ubuntu/Desktop/test/yolov5x.tflite
+
+curl -O https://storage.googleapis.com/download.tensorflow.org/models/tflite/model_mobilenet_v1_1.0_224_quant.tflite
+ncc-tflite -arch mdla2.0 model_mobilenet_v1_1.0_224_quant.tflite -o model_mobilenet_v1_1.0_224_quant-mdla2.0.dla
+
+python3 benchmark2.py --file /home/ubuntu/Desktop/test/yolov5x.tflite --target vpu_fpu --count 100
+
