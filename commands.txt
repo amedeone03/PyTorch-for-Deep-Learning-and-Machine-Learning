@@ -23,3 +23,13 @@ Traceback (most recent call last):
   File "/usr/lib/python3.10/subprocess.py", line 526, in run
     raise CalledProcessError(retcode, process.args,
 subprocess.CalledProcessError: Command 'ncc-tflite -arch vpu_fpu /home/ubuntu/Desktop/test/yolov5x.tflite -o /home/ubuntu/Desktop/test/yolov5x-vpu_fpu.dla  --relax-fp32 ' returned non-zero exit status 1.
+
+----------------------------------
+
+ncc-tflite -arch mdla2.0 /home/ubuntu/Desktop/test/yolov5x.tflite -o /home/ubuntu/Desktop/test/yolov5x-mdla2.0.dla --relax-fp32
+
+ncc-tflite -arch vpu_fpu /home/ubuntu/Desktop/test/yolov5x.tflite -o /home/ubuntu/Desktop/test/yolov5x-vpu_fpu.dla
+
+neuropilot_runtime -m /home/ubuntu/Desktop/test/yolov5x-mdla2.0.dla -i /path/to/input_data
+
+neuropilot_runtime -m /home/ubuntu/Desktop/test/yolov5x-vpu_fpu.dla -i /path/to/input_data
