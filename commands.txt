@@ -1,17 +1,1 @@
-QUANTIZE THE MODEL:
-
-import tensorflow as tf
-
-# Convert the TensorFlow SavedModel to a TFLite model with dynamic range quantization
-converter = tf.lite.TFLiteConverter.from_saved_model('/path/to/yolov5x_saved_model')
-
-# Apply dynamic range quantization
-converter.optimizations = [tf.lite.Optimize.DEFAULT]
-
-# Convert and save the quantized model
-tflite_quant_model = converter.convert()
-
-with open('/path/to/output/yolov5x_dynamic_quant.tflite', 'wb') as f:
-    f.write(tflite_quant_model)
-
-print("Dynamic Range Quantized model saved!")
+python3 benchmark2.py --file /home/ubuntu/Desktop/test/yolov5x.tflite --target tflite_cpu --count 100
