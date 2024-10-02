@@ -41,3 +41,40 @@ Traceback (most recent call last):
   File "/home/ubuntu/.local/lib/python3.10/site-packages/tensorflow/python/saved_model/loader_impl.py", line 119, in parse_saved_model
     raise IOError(
 OSError: SavedModel file does not exist at: yolov5x.tflite/{saved_model.pbtxt|saved_model.pb}
+
+----------------------------------
+import tensorflow as tf
+
+# Load your YOLOv5x TFLite model
+converter = tf.lite.TFLiteConverter.from_saved_model('yolov5x.tflite')
+
+# Set the converter to perform dynamic range quantization
+converter.optimizations = [tf.lite.Optimize.DEFAULT]
+
+# Convert the model
+quantized_model = converter.convert()
+
+# Save the quantized model
+with open('yolov5x_quantized.tflite', 'wb') as f:
+    f.write(quantized_model)
+
+print("Model successfully quantized and saved!")
+
+THE ERROR:
+
+ubuntu@mtk-genio:~/Desktop/test$ python3 quantize_model.py 
+Traceback (most recent call last):
+  File "/home/ubuntu/Desktop/test/quantize_model.py", line 4, in <module>
+    converter = tf.lite.TFLiteConverter.from_saved_model('yolov5x.tflite')
+  File "/home/ubuntu/.local/lib/python3.10/site-packages/tensorflow/lite/python/lite.py", line 2073, in from_saved_model
+    saved_model = _load(saved_model_dir, tags)
+  File "/home/ubuntu/.local/lib/python3.10/site-packages/tensorflow/python/saved_model/load.py", line 900, in load
+    result = load_partial(export_dir, None, tags, options)["root"]
+  File "/home/ubuntu/.local/lib/python3.10/site-packages/tensorflow/python/saved_model/load.py", line 1005, in load_partial
+    loader_impl.parse_saved_model_with_debug_info(export_dir))
+  File "/home/ubuntu/.local/lib/python3.10/site-packages/tensorflow/python/saved_model/loader_impl.py", line 59, in parse_saved_model_with_debug_info
+    saved_model = parse_saved_model(export_dir)
+  File "/home/ubuntu/.local/lib/python3.10/site-packages/tensorflow/python/saved_model/loader_impl.py", line 119, in parse_saved_model
+    raise IOError(
+OSError: SavedModel file does not exist at: yolov5x.tflite/{saved_model.pbtxt|saved_model.pb}
+
