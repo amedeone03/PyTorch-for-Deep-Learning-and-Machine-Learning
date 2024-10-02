@@ -19,6 +19,17 @@
     ```
 
 --------------------------------------------
+
 /home/ubuntu/Desktop/test/yolov5x.onnx
 
 /home/ubuntu/Desktop/test/yolov5x.tflite
+
+--------------------------------------------
+
+python3 benchmark.py --file /home/ubuntu/Desktop/test/yolov5x.onnx --target mdla_3.0 --count 100
+
+python3 benchmark.py --file /home/ubuntu/Desktop/test/yolov5x.tflite --target mdla_3.0 --count 100
+
+
+ls -l /home/ubuntu/Desktop/test/yolov5x.onnx
+ls -l /home/ubuntu/Desktop/test/yolov5x.tflite
