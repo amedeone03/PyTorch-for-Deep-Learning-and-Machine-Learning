@@ -1,35 +1,7 @@
-ERRORS
+FIXING THE PROBLEMS
 
-ubuntu@mtk-genio:~/Desktop/test$ python3 benchmark2.py --file /home/ubuntu/Desktop/test/yolov5x.tflite --target mdla2.0 --count 100
-Traceback (most recent call last):
-  File "/home/ubuntu/Desktop/test/benchmark2.py", line 197, in <module>
-    benchmark_tflite_model(args.file, args.target, args.count, compile_options, False, args.profile)
-  File "/home/ubuntu/Desktop/test/benchmark2.py", line 96, in benchmark_tflite_model
-    tflite_2_dla(model, target, dla, compile_options)
-  File "/home/ubuntu/Desktop/test/benchmark2.py", line 90, in tflite_2_dla
-    res = subprocess.run(batcmd, shell=True, check=True, executable='/bin/bash', stdout=subprocess.PIPE, stderr=subprocess.STDOUT, universal_newlines=True)
-  File "/usr/lib/python3.10/subprocess.py", line 526, in run
-    raise CalledProcessError(retcode, process.args,
-subprocess.CalledProcessError: Command 'ncc-tflite -arch mdla2.0 /home/ubuntu/Desktop/test/yolov5x.tflite -o /home/ubuntu/Desktop/test/yolov5x-mdla2.0.dla  --relax-fp32 ' returned non-zero exit status 1.
+1. QUANTIZATION OF THE MODEL
+https://mediatek.gitlab.io/aiot/doc/aiot-dev-guide/master/sw/yocto/ml-guide/neuron-dev-flow/model_converter.html
 
-ubuntu@mtk-genio:~/Desktop/test$ python3 benchmark2.py --file /home/ubuntu/Desktop/test/yolov5x.tflite --target vpu_fpu --count 100
-Traceback (most recent call last):
-  File "/home/ubuntu/Desktop/test/benchmark2.py", line 197, in <module>
-    benchmark_tflite_model(args.file, args.target, args.count, compile_options, False, args.profile)
-  File "/home/ubuntu/Desktop/test/benchmark2.py", line 96, in benchmark_tflite_model
-    tflite_2_dla(model, target, dla, compile_options)
-  File "/home/ubuntu/Desktop/test/benchmark2.py", line 90, in tflite_2_dla
-    res = subprocess.run(batcmd, shell=True, check=True, executable='/bin/bash', stdout=subprocess.PIPE, stderr=subprocess.STDOUT, universal_newlines=True)
-  File "/usr/lib/python3.10/subprocess.py", line 526, in run
-    raise CalledProcessError(retcode, process.args,
-subprocess.CalledProcessError: Command 'ncc-tflite -arch vpu_fpu /home/ubuntu/Desktop/test/yolov5x.tflite -o /home/ubuntu/Desktop/test/yolov5x-vpu_fpu.dla  --relax-fp32 ' returned non-zero exit status 1.
-
-----------------------------------
-
-ncc-tflite -arch mdla2.0 /home/ubuntu/Desktop/test/yolov5x.tflite -o /home/ubuntu/Desktop/test/yolov5x-mdla2.0.dla --relax-fp32
-
-ncc-tflite -arch vpu_fpu /home/ubuntu/Desktop/test/yolov5x.tflite -o /home/ubuntu/Desktop/test/yolov5x-vpu_fpu.dla
-
-neuropilot_runtime -m /home/ubuntu/Desktop/test/yolov5x-mdla2.0.dla -i /path/to/input_data
-
-neuropilot_runtime -m /home/ubuntu/Desktop/test/yolov5x-vpu_fpu.dla -i /path/to/input_data
+2. VERIFICATION MODEL
+https://mediatek.gitlab.io/aiot/doc/aiot-dev-guide/master/sw/yocto/ml-guide/neuron-dev-flow/model_converter/neuropilot_converter_tool.html
