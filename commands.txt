@@ -10,3 +10,26 @@ ubuntu@mtk-genio:~/Desktop/test$ python3 benchmark2.py --file /home/ubuntu/Deskt
   File "/usr/lib/python3.10/subprocess.py", line 526, in run
     raise CalledProcessError(retcode, process.args,
 subprocess.CalledProcessError: Command 'ncc-tflite -arch mdla2.0 /home/ubuntu/Desktop/test/yolov5x.tflite -o /home/ubuntu/Desktop/test/yolov5x-mdla2.0.dla  --relax-fp32 ' returned non-zero exit status 1.
+
+----------------------------------
+
+import tensorflow as tf
+
+# Load the YOLOv5x model
+converter = tf.lite.TFLiteConverter.from_saved_model('path_to_yolov5x_model')
+
+# Enable integer quantization
+converter.optimizations = [tf.lite.Optimize.DEFAULT]
+converter.target_spec.supported_ops = [tf.lite.OpsSet.TFLITE_BUILTINS_INT8]
+converter.inference_input_type = tf.uint8
+converter.inference_output_type = tf.uint8
+
+# Convert the model
+tflite_quant_model = converter.convert()
+
+# Save the quantized model
+with open('yolov5x_quantized.tflite', 'wb') as f:
+    f.write(tflite_quant_model)
+
+
+python3 benchmark2.py --file /path/to/yolov5x_quantized.tflite --target mdla2.0 --count 100
