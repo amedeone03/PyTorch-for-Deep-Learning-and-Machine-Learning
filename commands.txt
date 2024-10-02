@@ -12,3 +12,51 @@ Traceback (most recent call last):
   File "/usr/lib/python3.10/subprocess.py", line 526, in run
     raise CalledProcessError(retcode, process.args,
 subprocess.CalledProcessError: Command 'ncc-tflite -arch tflite_cpu /home/ubuntu/Desktop/test/yolov5x.tflite -o /home/ubuntu/Desktop/test/yolov5x-tflite_cpu.dla  --relax-fp32 ' returned non-zero exit status 1.
+
+
+
+def benchmark_tflite_model(model, target, count=100, compile_options="", cache_dla=False, profile=False):
+    # Skip DLA conversion for tflite_cpu
+    if target != "tflite_cpu":
+        dla = model.replace('.tflite', "-"+ target + '.dla')
+        tflite_2_dla(model, target, dla, compile_options)
+        if not os.path.exists(dla):
+            logging.error("FAIL to convert model to dla with target %s, %s" % (target, model))
+            return
+        model = dla
+
+    # Find input size and output count of model
+    model_io = query_tflite_model_io_info(model)
+
+    # Generate random input.bin
+    input_bin = 'input.bin'
+    gen_input_bin(model_io, input_bin)
+
+    batcmd = f'neuronrt -m hw -a {model} -c {count} -b 100 -i {input_bin} '
+    for i in range(model_io.output_count):
+        batcmd += f' -o output_{i}.bin '
+
+    if profile:
+        logging.info("%s, %s, inference start" % (model, target))
+
+    res = subprocess.run(batcmd, shell=True, check=True, executable='/bin/bash', stdout=subprocess.PIPE, stderr=subprocess.STDOUT, universal_newlines=True)
+
+    if profile:
+        logging.info("%s, %s, inference stop" % (model, target))
+        print(res.stdout)
+
+    result = res.stdout
+    logging.debug(result)
+
+    # Remove DLA file if caching is not enabled
+    if not cache_dla and target != "tflite_cpu":
+        os.remove(dla)
+
+    # Find 'Total inference time' in output log
+    match = re.search('Total inference time = (\d+)', result)
+    if match:
+        time = float(match.group(1))
+        avg_time = time / count  # Calculate average inference time
+        logging.info('%s, %s, avg inference time: %s' % (model, target, avg_time))
+    else:
+        logging.error("FAIL to find avg inference time of model")
