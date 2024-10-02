@@ -5,3 +5,21 @@ https://mediatek.gitlab.io/aiot/doc/aiot-dev-guide/master/sw/yocto/ml-guide/neur
 
 2. VERIFICATION MODEL
 https://mediatek.gitlab.io/aiot/doc/aiot-dev-guide/master/sw/yocto/ml-guide/neuron-dev-flow/model_converter/neuropilot_converter_tool.html
+
+
+import tensorflow as tf
+
+# Load your YOLOv5x TFLite model
+converter = tf.lite.TFLiteConverter.from_saved_model('/path/to/your/saved_model_directory')
+
+# Set the converter to perform dynamic range quantization
+converter.optimizations = [tf.lite.Optimize.DEFAULT]
+
+# Convert the model
+quantized_model = converter.convert()
+
+# Save the quantized model
+with open('/path/to/your/quantized_model.tflite', 'wb') as f:
+    f.write(quantized_model)
+
+print("Model successfully quantized and saved!")
