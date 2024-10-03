@@ -1,0 +1,13 @@
+ubuntu@mtk-genio:~/Desktop/test/benchmark_dla$ python3 benchmark2.py --count 100
+2024-10-03 14:19:01,192 [INFO] Available backends: ['mdla2.0', 'vpu_fpu']
+2024-10-03 14:19:01,199 [INFO] Running inference on mdla2.0
+Traceback (most recent call last):
+  File "/home/ubuntu/Desktop/test/benchmark_dla/benchmark2.py", line 184, in <module>
+    benchmark_tflite_model(args.file, backend, args.count, args.options, profile=args.profile)
+  File "/home/ubuntu/Desktop/test/benchmark_dla/benchmark2.py", line 96, in benchmark_tflite_model
+    tflite_2_dla(model, target, dla, compile_options)
+  File "/home/ubuntu/Desktop/test/benchmark_dla/benchmark2.py", line 90, in tflite_2_dla
+    res = subprocess.run(batcmd, shell=True, check=True, executable='/bin/bash', stdout=subprocess.PIPE, stderr=subprocess.STDOUT, universal_newlines=True)
+  File "/usr/lib/python3.10/subprocess.py", line 526, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command 'ncc-tflite -arch mdla2.0 yolov5x_quantized.tflite -o yolov5x_quantized-mdla2.0.dla ' returned non-zero exit status 1.
