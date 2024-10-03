@@ -23,3 +23,11 @@ Traceback (most recent call last):
   File "/home/ubuntu/.local/lib/python3.10/site-packages/tensorflow/python/saved_model/loader_impl.py", line 119, in parse_saved_model
     raise IOError(
 OSError: SavedModel file does not exist at: yolov5x.tflite/{saved_model.pbtxt|saved_model.pb}
+
+-----------------------------------
+
+ubuntu@mtk-genio:~/Desktop/test/benchmark_dla$ python3 quantize.py 
+Traceback (most recent call last):
+  File "/home/ubuntu/Desktop/test/benchmark_dla/quantize.py", line 4, in <module>
+    converter = tf.lite.TFLiteConverter.from_tflite_model("yolov5x.tflite")
+AttributeError: type object 'TFLiteConverterV2' has no attribute 'from_tflite_model'. Did you mean: 'from_keras_model'?
