@@ -22,21 +22,19 @@ class ModelIO:
         self.output_count = 0
         self.recommand_compile_options = ''
 
+# Function to query available backends (limited to predefined backends)
 def query_backends():
-    # In this case, we are limiting the backends to mdla2.0 and vpu_fpu
     logging.info(f"Available backends are restricted to: {available_backends}")
 
+# Function to query model input/output info using ncc-tflite tool
 def query_tflite_model_io_info(model):
-    # Find input size and output count of tflite model
     ret = ModelIO()
-
     intput_size = (-1,-1,-1,-1)
     intput_type = 'kTfLiteUInt8'
     output_count = 0
-    batcmd = ('ncc-tflite --show-io-info %s' % model)
+    batcmd = ('ncc-tflite --show-io-info %s' % model )
     res = subprocess.run(batcmd, shell=True, check=True, executable='/bin/bash', stdout=subprocess.PIPE, stderr=subprocess.STDOUT, universal_newlines=True)
     result = res.stdout
-
     logging.debug(result)
 
     # Find output count
@@ -53,7 +51,7 @@ def query_tflite_model_io_info(model):
     tmp = result.partition("# of output tensors")[0]
     match = re.search('Shape: {(\d+),(\d+),(\d+),(\d+)}', tmp)
     if match:
-        intput_size = (int(match.group(1)), int(match.group(2)), int(match.group(3)), int(match.group(4)))
+        intput_size = ( int(match.group(1)), int(match.group(2)), int(match.group(3)), int(match.group(4)) )
     else:
         logging.error("FAIL to find input size of model")
         return ret
@@ -74,8 +72,16 @@ def query_tflite_model_io_info(model):
 
     return ret
 
+# Generate random input binary file
+def gen_input_bin(model_io, filename):
+    # Generate input data, format can be uint8 or float32 based on model input type
+    ndarray = np.random.randint(0, high=255, size=model_io.intput_size, dtype=np.uint8)
+    if model_io.intput_type == 'kTfLiteFloat32':
+        ndarray = np.float32(ndarray) / 255.0
+    ndarray.tofile(filename)
+
+# Convert tflite to dla using ncc-tflite for specific target
 def tflite_2_dla(tflite_model, target, dla_model, compile_options=""):
-    # Compile for a specific target
     if os.path.exists(dla_model):
         return
 
@@ -84,31 +90,32 @@ def tflite_2_dla(tflite_model, target, dla_model, compile_options=""):
     result = res.stdout
     logging.debug(result)
 
+# Benchmarking function for tflite models
 def benchmark_tflite_model(model, target, count=100, compile_options="", cache_dla=False, profile=False):
-    dla = model.replace('.tflite', "-" + target + '.dla')
+    dla = model.replace('.tflite', "-"+ target + '.dla')
     tflite_2_dla(model, target, dla, compile_options)
     if not os.path.exists(dla):
         logging.error("FAIL to convert model to dla with target %s, %s" % (target, model))
         return
 
     # Find input size and output count of model
-    modeil_io = query_tflite_model_io_info(model)
+    model_io = query_tflite_model_io_info(model)
 
     # Generate random input.bin
     input_bin = 'input.bin'
-    gen_input_bin(modeil_io, input_bin)
+    gen_input_bin(model_io, input_bin)
 
     # Build inference command
     batcmd = 'neuronrt -m hw -a %s -c %s -b 100 -i %s ' % (dla, count, input_bin)
-    for i in range(modeil_io.output_count):
-        batcmd = batcmd + (' -o output_%s.bin ' % i)
+    for i in range(model_io.output_count):
+        batcmd += ' -o output_%s.bin ' % i
 
-    if profile is True:
+    if profile:
         logging.info("%s, %s, inference start" % (model, target))
 
     res = subprocess.run(batcmd, shell=True, check=True, executable='/bin/bash', stdout=subprocess.PIPE, stderr=subprocess.STDOUT, universal_newlines=True)
 
-    if profile is True:
+    if profile:
         logging.info("%s, %s, inference stop" % (model, target))
         print(res.stdout)
 
@@ -122,7 +129,6 @@ def benchmark_tflite_model(model, target, count=100, compile_options="", cache_d
     match = re.search('Total inference time = (\d+)', result)
     if match:
         time = float(match.group(1))
-        # Calculate average inference time
         avg_time = time / count
     else:
         logging.error("FAIL to find avg inference time of model")
@@ -130,8 +136,7 @@ def benchmark_tflite_model(model, target, count=100, compile_options="", cache_d
 
     logging.info('%s, %s, avg inference time: %s' % (model, target, avg_time))
 
-
-# Argument parser setup
+# Main argument parser
 query_backends()
 
 parser = argparse.ArgumentParser(formatter_class=argparse.RawTextHelpFormatter)
@@ -139,13 +144,13 @@ parser = argparse.ArgumentParser(formatter_class=argparse.RawTextHelpFormatter)
 parser.add_argument(
     '--auto',
     action='store_true',
-    help='Auto run, find all models in the current folder and inference them one by one. It will delete dla file after inference and ignore options: --file and --target'
+    help='Auto run, find all models in current folder and inference them one by one. It will delete dla file after inference and ignore options: --file and --target'
 )
 
 parser.add_argument(
     '--stress',
     action='store_true',
-    help='Stress test, find all models in the current folder and inference them one by one. It will not delete dla file after inference and ignore options: --auto, --file and --target'
+    help='Stress test, find all models in current folder and inference them one by one. It will not delete dla file after inference and ignore options: --auto, --file and --target'
 )
 
 parser.add_argument(
@@ -185,18 +190,18 @@ args = parser.parse_args()
 # Prepare logging
 logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s] %(message)s")
 
-if args.auto is True or args.stress is True:
+if args.auto or args.stress:
     cache_dla = args.stress
     for file in os.listdir(os.getcwd()):
         if file.endswith('.tflite'):
-            modeil_io = query_tflite_model_io_info(file)
-            compile_options = args.options + modeil_io.recommand_compile_options
+            model_io = query_tflite_model_io_info(file)
+            compile_options = args.options + model_io.recommand_compile_options
             benchmark_tflite_model(file, args.target, args.count, compile_options, cache_dla, args.profile)
 else:
     if os.path.exists(args.file):
         if args.file.endswith('.tflite'):
-            modeil_io = query_tflite_model_io_info(args.file)
-            compile_options = args.options + modeil_io.recommand_compile_options
+            model_io = query_tflite_model_io_info(args.file)
+            compile_options = args.options + model_io.recommand_compile_options
             benchmark_tflite_model(args.file, args.target, args.count, compile_options, False, args.profile)
     else:
         logging.error('Error to load model %s', args.file)
