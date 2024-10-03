@@ -118,3 +118,26 @@ quantize_dynamic(model_fp32, model_quant, weight_type=QuantType.QInt8)
 
 print(f"Quantized ONNX model saved as: {model_quant}")
 
+----------------------------------------------------------------------------------------
+
+import onnxruntime as ort
+import numpy as np
+
+# Load the quantized ONNX model
+quantized_model_path = "best_quantized.onnx"  # Replace with your quantized model path
+session = ort.InferenceSession(quantized_model_path)
+
+# Get input and output details
+input_name = session.get_inputs()[0].name
+input_shape = session.get_inputs()[0].shape
+output_name = session.get_outputs()[0].name
+
+# Generate a random input tensor with the correct shape
+input_data = np.random.rand(*input_shape).astype(np.float32)
+
+# Run inference
+outputs = session.run([output_name], {input_name: input_data})
+
+# Print the output
+print(f"Inference result from quantized model: {outputs}")
+
