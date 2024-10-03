@@ -9,3 +9,21 @@ usage: convert.py [-h] [--input INPUT] [--graphdef GRAPHDEF] [--saved-model SAVE
                   [--target {rs4,rs5,rs6,caffe2,tensorrt,nhwc}] [--continue_on_error] [--verbose] [--debug] [--output_frozen_graph OUTPUT_FROZEN_GRAPH]
                   [--inputs-as-nchw INPUTS_AS_NCHW] [--outputs-as-nchw OUTPUTS_AS_NCHW]
 convert.py: error: unrecognized arguments: --output-format saved_model
+
+
+
+ubuntu@mtk-genio:~/Desktop/test/benchmark_dla$ python3 quantize.py 
+Traceback (most recent call last):
+  File "/home/ubuntu/Desktop/test/benchmark_dla/quantize.py", line 6, in <module>
+    converter = tf.lite.TFLiteConverter.from_saved_model(saved_model_dir)
+  File "/home/ubuntu/.local/lib/python3.10/site-packages/tensorflow/lite/python/lite.py", line 2073, in from_saved_model
+    saved_model = _load(saved_model_dir, tags)
+  File "/home/ubuntu/.local/lib/python3.10/site-packages/tensorflow/python/saved_model/load.py", line 900, in load
+    result = load_partial(export_dir, None, tags, options)["root"]
+  File "/home/ubuntu/.local/lib/python3.10/site-packages/tensorflow/python/saved_model/load.py", line 1005, in load_partial
+    loader_impl.parse_saved_model_with_debug_info(export_dir))
+  File "/home/ubuntu/.local/lib/python3.10/site-packages/tensorflow/python/saved_model/loader_impl.py", line 59, in parse_saved_model_with_debug_info
+    saved_model = parse_saved_model(export_dir)
+  File "/home/ubuntu/.local/lib/python3.10/site-packages/tensorflow/python/saved_model/loader_impl.py", line 119, in parse_saved_model
+    raise IOError(
+OSError: SavedModel file does not exist at: yolov5x.tflite/{saved_model.pbtxt|saved_model.pb}
