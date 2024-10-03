@@ -1,64 +1,33 @@
-ubuntu@mtk-genio:~/Desktop/test/benchmark_dla$ python3 test_quantize_model.py 
-Traceback (most recent call last):
-  File "/home/ubuntu/Desktop/test/benchmark_dla/test_quantize_model.py", line 7, in <module>
-    session = ort.InferenceSession(quantized_model_path)
-  File "/home/ubuntu/.local/lib/python3.10/site-packages/onnxruntime/capi/onnxruntime_inference_collection.py", line 419, in __init__
-    self._create_inference_session(providers, provider_options, disabled_optimizers)
-  File "/home/ubuntu/.local/lib/python3.10/site-packages/onnxruntime/capi/onnxruntime_inference_collection.py", line 491, in _create_inference_session
-    sess.initialize_session(providers, provider_options, disabled_optimizers)
-onnxruntime.capi.onnxruntime_pybind11_state.NotImplemented: [ONNXRuntimeError] : 9 : NOT_IMPLEMENTED : Could not find an implementation for ConvInteger(10) node with name '/model.0/conv/Conv_quant'
--------------
-ubuntu@mtk-genio:~/Desktop/test/benchmark_dla$ python3 test_quantize_model.py 
-['TensorrtExecutionProvider', 'CUDAExecutionProvider', 'MIGraphXExecutionProvider', 'ROCMExecutionProvider', 'OpenVINOExecutionProvider', 'DnnlExecutionProvider', 'TvmExecutionProvider', 'VitisAIExecutionProvider', 'QNNExecutionProvider', 'NnapiExecutionProvider', 'VSINPUExecutionProvider', 'JsExecutionProvider', 'CoreMLExecutionProvider', 'ArmNNExecutionProvider', 'ACLExecutionProvider', 'DmlExecutionProvider', 'RknpuExecutionProvider', 'WebNNExecutionProvider', 'XnnpackExecutionProvider', 'CANNExecutionProvider', 'AzureExecutionProvider', 'CPUExecutionProvider']
-Traceback (most recent call last):
-  File "/home/ubuntu/Desktop/test/benchmark_dla/test_quantize_model.py", line 8, in <module>
-    session = ort.InferenceSession(quantized_model_path, providers=['CPUExecutionProvider'])
-  File "/home/ubuntu/.local/lib/python3.10/site-packages/onnxruntime/capi/onnxruntime_inference_collection.py", line 419, in __init__
-    self._create_inference_session(providers, provider_options, disabled_optimizers)
-  File "/home/ubuntu/.local/lib/python3.10/site-packages/onnxruntime/capi/onnxruntime_inference_collection.py", line 491, in _create_inference_session
-    sess.initialize_session(providers, provider_options, disabled_optimizers)
-onnxruntime.capi.onnxruntime_pybind11_state.NotImplemented: [ONNXRuntimeError] : 9 : NOT_IMPLEMENTED : Could not find an implementation for ConvInteger(10) node with name '/model.0/conv/Conv_quant'
---------------
-ubuntu@mtk-genio:~/Desktop/test/benchmark_dla$ onnx-tf convert -i yolov5x.quantized.onnx -o yolov5x_tf_saved_model
-/home/ubuntu/.local/lib/python3.10/site-packages/tensorflow_addons/utils/tfa_eol_msg.py:23: UserWarning: 
+import tensorflow as tf
 
-TensorFlow Addons (TFA) has ended development and introduction of new features.
-TFA has entered a minimal maintenance and release mode until a planned end of life in May 2024.
-Please modify downstream libraries to take dependencies from other repositories in our TensorFlow community (e.g. Keras, Keras-CV, and Keras-NLP). 
+# Path to the saved TensorFlow model
+saved_model_dir = "yolov5x_tf_saved_model"
 
-For more information see: https://github.com/tensorflow/addons/issues/2807 
+# Initialize the TFLite converter
+converter = tf.lite.TFLiteConverter.from_saved_model(saved_model_dir)
 
-  warnings.warn(
-2024-10-03 13:29:13,280 - onnx-tf - INFO - Start converting onnx pb to tf pb:
-2024-10-03 13:29:13,762 - onnx-tf - INFO - Unknown op ConstantFill in domain `ai.onnx`.
-2024-10-03 13:29:13,762 - onnx-tf - INFO - Unknown op ImageScaler in domain `ai.onnx`.
-Traceback (most recent call last):
-  File "/home/ubuntu/.local/bin/onnx-tf", line 8, in <module>
-    sys.exit(main())
-  File "/home/ubuntu/.local/lib/python3.10/site-packages/onnx_tf/cli.py", line 20, in main
-    return onnx_tf.converter.main(args[1:])
-  File "/home/ubuntu/.local/lib/python3.10/site-packages/onnx_tf/converter.py", line 20, in main
-    convert(**{k: v for k, v in vars(args).items() if v is not None})
-  File "/home/ubuntu/.local/lib/python3.10/site-packages/onnx_tf/converter.py", line 136, in convert
-    tf_rep = backend.prepare(onnx_model, **kwargs)
-  File "/home/ubuntu/.local/lib/python3.10/site-packages/onnx_tf/backend.py", line 66, in prepare
-    return cls.onnx_model_to_tensorflow_rep(model, strict)
-  File "/home/ubuntu/.local/lib/python3.10/site-packages/onnx_tf/backend.py", line 86, in onnx_model_to_tensorflow_rep
-    return cls._onnx_graph_to_tensorflow_rep(model.graph, opset_import, strict)
-  File "/home/ubuntu/.local/lib/python3.10/site-packages/onnx_tf/backend.py", line 106, in _onnx_graph_to_tensorflow_rep
-    input_dict_items = cls._onnx_initializer_to_input_dict_items(
-  File "/home/ubuntu/.local/lib/python3.10/site-packages/onnx_tf/backend.py", line 222, in _onnx_initializer_to_input_dict_items
-    return [(init.name,
-  File "/home/ubuntu/.local/lib/python3.10/site-packages/onnx_tf/backend.py", line 223, in <listcomp>
-    tf.constant(tensor2list(init),
-  File "/home/ubuntu/.local/lib/python3.10/site-packages/tensorflow/python/framework/constant_op.py", line 267, in constant
-    return _constant_impl(value, dtype, shape, name, verify_shape=False,
-  File "/home/ubuntu/.local/lib/python3.10/site-packages/tensorflow/python/framework/constant_op.py", line 281, in _constant_impl
-    const_tensor = ops._create_graph_constant(  # pylint: disable=protected-access
-  File "/home/ubuntu/.local/lib/python3.10/site-packages/tensorflow/python/framework/ops.py", line 270, in _create_graph_constant
-    const_tensor = g._create_op_internal(  # pylint: disable=protected-access
-  File "/home/ubuntu/.local/lib/python3.10/site-packages/tensorflow/python/framework/ops.py", line 2657, in _create_op_internal
-    ret = Operation.from_node_def(
-  File "/home/ubuntu/.local/lib/python3.10/site-packages/tensorflow/python/framework/ops.py", line 1119, in from_node_def
-    raise ValueError(
-ValueError: `/model.0/conv/Conv_output_0_bias_reshape_shape` is not a valid node name. Accepted names conform to Regex /re.compile('^[A-Za-z0-9.][A-Za-z0-9_.\\\\/>-]*$')/
+# Enable optimizations (optional, helps to reduce size and improve performance)
+converter.optimizations = [tf.lite.Optimize.DEFAULT]
+
+# If you want to quantize to int8 (8-bit), you can set these options:
+converter.target_spec.supported_ops = [tf.lite.OpsSet.TFLITE_BUILTINS_INT8]
+converter.inference_input_type = tf.int8  # Input type is int8
+converter.inference_output_type = tf.int8  # Output type is int8
+
+# Optionally, define a representative dataset generator for further optimization
+def representative_data_gen():
+    for _ in range(100):
+        # Replace this with the shape of the inputs to your YOLOv5 model (e.g., 1, 640, 640, 3)
+        yield [tf.random.normal([1, 640, 640, 3], dtype=tf.float32)]
+
+converter.representative_dataset = representative_data_gen
+
+# Convert the model to TFLite format
+tflite_model = converter.convert()
+
+# Save the converted TFLite model to a file
+with open("yolov5x_quantized.tflite", "wb") as f:
+    f.write(tflite_model)
+
+print("TFLite model saved as yolov5x_quantized.tflite")
+
