@@ -7,3 +7,14 @@ Traceback (most recent call last):
   File "/home/ubuntu/.local/lib/python3.10/site-packages/onnxruntime/capi/onnxruntime_inference_collection.py", line 491, in _create_inference_session
     sess.initialize_session(providers, provider_options, disabled_optimizers)
 onnxruntime.capi.onnxruntime_pybind11_state.NotImplemented: [ONNXRuntimeError] : 9 : NOT_IMPLEMENTED : Could not find an implementation for ConvInteger(10) node with name '/model.0/conv/Conv_quant'
+-------------
+ubuntu@mtk-genio:~/Desktop/test/benchmark_dla$ python3 test_quantize_model.py 
+['TensorrtExecutionProvider', 'CUDAExecutionProvider', 'MIGraphXExecutionProvider', 'ROCMExecutionProvider', 'OpenVINOExecutionProvider', 'DnnlExecutionProvider', 'TvmExecutionProvider', 'VitisAIExecutionProvider', 'QNNExecutionProvider', 'NnapiExecutionProvider', 'VSINPUExecutionProvider', 'JsExecutionProvider', 'CoreMLExecutionProvider', 'ArmNNExecutionProvider', 'ACLExecutionProvider', 'DmlExecutionProvider', 'RknpuExecutionProvider', 'WebNNExecutionProvider', 'XnnpackExecutionProvider', 'CANNExecutionProvider', 'AzureExecutionProvider', 'CPUExecutionProvider']
+Traceback (most recent call last):
+  File "/home/ubuntu/Desktop/test/benchmark_dla/test_quantize_model.py", line 8, in <module>
+    session = ort.InferenceSession(quantized_model_path, providers=['CPUExecutionProvider'])
+  File "/home/ubuntu/.local/lib/python3.10/site-packages/onnxruntime/capi/onnxruntime_inference_collection.py", line 419, in __init__
+    self._create_inference_session(providers, provider_options, disabled_optimizers)
+  File "/home/ubuntu/.local/lib/python3.10/site-packages/onnxruntime/capi/onnxruntime_inference_collection.py", line 491, in _create_inference_session
+    sess.initialize_session(providers, provider_options, disabled_optimizers)
+onnxruntime.capi.onnxruntime_pybind11_state.NotImplemented: [ONNXRuntimeError] : 9 : NOT_IMPLEMENTED : Could not find an implementation for ConvInteger(10) node with name '/model.0/conv/Conv_quant'
