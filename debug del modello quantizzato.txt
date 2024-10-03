@@ -34,3 +34,43 @@ interpreter.invoke()
 # Get the output
 output_data = interpreter.get_tensor(output_details[0]['index'])
 print(output_data)
+
+------------------------------------
+
+import tensorflow as tf
+import numpy as np
+import time
+
+# Load the TFLite model and allocate tensors.
+interpreter = tf.lite.Interpreter(model_path="yolov5x_quantized.tflite")
+interpreter.allocate_tensors()
+
+# Get input and output tensors.
+input_details = interpreter.get_input_details()
+output_details = interpreter.get_output_details()
+
+# Generate random input data for testing
+input_shape = input_details[0]['shape']
+input_data = np.array(np.random.random_sample(input_shape), dtype=np.float32)
+
+# Run inference multiple times to calculate average inference time
+num_inferences = 100  # Number of times to run inference
+total_time = 0.0
+
+for _ in range(num_inferences):
+    interpreter.set_tensor(input_details[0]['index'], input_data)
+    
+    # Measure time for each inference
+    start_time = time.time()
+    interpreter.invoke()
+    end_time = time.time()
+    
+    total_time += (end_time - start_time)
+
+average_inference_time = total_time / num_inferences
+print(f"Average inference time over {num_inferences} runs: {average_inference_time:.6f} seconds")
+
+# Get the output from the model
+output_data = interpreter.get_tensor(output_details[0]['index'])
+print("Output data:", output_data)
+
