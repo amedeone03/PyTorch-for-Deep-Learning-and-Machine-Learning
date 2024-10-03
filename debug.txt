@@ -55,3 +55,26 @@ ubuntu@mtk-genio:~/Desktop/test/benchmark_dla$ pip install tensorflow-addons
 Defaulting to user installation because normal site-packages is not writeable
 ERROR: Could not find a version that satisfies the requirement tensorflow-addons (from versions: none)
 ERROR: No matching distribution found for tensorflow-addons
+
+----------------------------------------
+
+# Install dependencies if not already installed
+sudo apt-get install build-essential cmake
+
+# Clone the tensorflow-addons repository
+git clone https://github.com/tensorflow/addons.git
+
+# Navigate into the tensorflow-addons directory
+cd addons
+
+# Install using pip
+pip install .
+
+
+OPPURE 
+
+
+pip install tf2onnx
+
+python -m tf2onnx.convert --opset 13 --input yolov5x.onnx --output yolov5x_tf_saved_model --saved-model
+
