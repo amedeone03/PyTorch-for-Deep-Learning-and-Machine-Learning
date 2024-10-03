@@ -145,3 +145,15 @@ onnx.save(model, "yolov5x_fixed.onnx")
 onnx-tf convert -i yolov5x_fixed.onnx -o yolov5x_tf_saved_model
 
 ------------------------------
+
+
+ubuntu@mtk-genio:~/Desktop/test/benchmark_dla$ python3 -m tf2onnx.convert --opset 13 --input yolov5x.onnx --output yolov5x_tf_saved_model --saved-model
+/usr/lib/python3.10/runpy.py:126: RuntimeWarning: 'tf2onnx.convert' found in sys.modules after import of package 'tf2onnx', but prior to execution of 'tf2onnx.convert'; this may result in unpredictable behaviour
+  warn(RuntimeWarning(msg))
+usage: convert.py [-h] [--input INPUT] [--graphdef GRAPHDEF] [--saved-model SAVED_MODEL] [--tag TAG] [--signature_def SIGNATURE_DEF] [--concrete_function CONCRETE_FUNCTION]
+                  [--checkpoint CHECKPOINT] [--keras KERAS] [--tflite TFLITE] [--tfjs TFJS] [--large_model] [--output OUTPUT] [--inputs INPUTS] [--outputs OUTPUTS]
+                  [--ignore_default IGNORE_DEFAULT] [--use_default USE_DEFAULT] [--rename-inputs RENAME_INPUTS] [--rename-outputs RENAME_OUTPUTS] [--use-graph-names]
+                  [--opset OPSET] [--dequantize] [--custom-ops CUSTOM_OPS] [--extra_opset EXTRA_OPSET] [--load_op_libraries LOAD_OP_LIBRARIES]
+                  [--target {rs4,rs5,rs6,caffe2,tensorrt,nhwc}] [--continue_on_error] [--verbose] [--debug] [--output_frozen_graph OUTPUT_FROZEN_GRAPH]
+                  [--inputs-as-nchw INPUTS_AS_NCHW] [--outputs-as-nchw OUTPUTS_AS_NCHW]
+convert.py: error: argument --saved-model: expected one argument
