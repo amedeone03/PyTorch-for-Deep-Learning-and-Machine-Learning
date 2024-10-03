@@ -31,3 +31,32 @@ with open("yolov5x_quantized.tflite", "wb") as f:
 
 print("TFLite model saved as yolov5x_quantized.tflite")
 
+-------------------------------------------------------------
+
+import tensorflow as tf
+import numpy as np
+
+# Load the TFLite model
+interpreter = tf.lite.Interpreter(model_path="yolov5x_quantized.tflite")
+interpreter.allocate_tensors()
+
+# Get input and output details
+input_details = interpreter.get_input_details()
+output_details = interpreter.get_output_details()
+
+# Generate a random input tensor matching the model's expected input shape
+input_shape = input_details[0]['shape']
+input_data = np.random.rand(*input_shape).astype(np.float32)
+
+# Set the input tensor
+interpreter.set_tensor(input_details[0]['index'], input_data)
+
+# Run inference
+interpreter.invoke()
+
+# Get the output tensor
+output_data = interpreter.get_tensor(output_details[0]['index'])
+
+# Print the output
+print(f"Inference result from TFLite model: {output_data}")
+
