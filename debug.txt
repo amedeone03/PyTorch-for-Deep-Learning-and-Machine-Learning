@@ -345,3 +345,22 @@ usage: convert.py [-h] [--input INPUT] [--graphdef GRAPHDEF] [--saved-model SAVE
                   [--target {rs4,rs5,rs6,caffe2,tensorrt,nhwc}] [--continue_on_error] [--verbose] [--debug] [--output_frozen_graph OUTPUT_FROZEN_GRAPH]
                   [--inputs-as-nchw INPUTS_AS_NCHW] [--outputs-as-nchw OUTPUTS_AS_NCHW]
 convert.py: error: graphdef and checkpoint models need to provide inputs and outputs
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+python3 -m tf2onnx.convert --opset 13 --input yolov5x.onnx --output yolov5x_tf_saved_model --output-format saved_model
+
