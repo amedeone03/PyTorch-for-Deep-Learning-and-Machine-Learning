@@ -31,3 +31,19 @@ Traceback (most recent call last):
   File "/home/ubuntu/Desktop/test/benchmark_dla/quantize.py", line 4, in <module>
     converter = tf.lite.TFLiteConverter.from_tflite_model("yolov5x.tflite")
 AttributeError: type object 'TFLiteConverterV2' has no attribute 'from_tflite_model'. Did you mean: 'from_keras_model'?
+
+-----------------------------------------
+
+ubuntu@mtk-genio:~/Desktop/test/benchmark_dla$ onnx-tf convert -i yolov5x.onnx -o yolov5x_tf_saved_model
+Traceback (most recent call last):
+  File "/home/ubuntu/.local/bin/onnx-tf", line 5, in <module>
+    from onnx_tf.cli import main
+  File "/home/ubuntu/.local/lib/python3.10/site-packages/onnx_tf/__init__.py", line 1, in <module>
+    from . import backend
+  File "/home/ubuntu/.local/lib/python3.10/site-packages/onnx_tf/backend.py", line 29, in <module>
+    from onnx_tf.common.handler_helper import get_all_backend_handlers
+  File "/home/ubuntu/.local/lib/python3.10/site-packages/onnx_tf/common/handler_helper.py", line 3, in <module>
+    from onnx_tf.handlers.backend import *  # noqa
+  File "/home/ubuntu/.local/lib/python3.10/site-packages/onnx_tf/handlers/backend/hardmax.py", line 3, in <module>
+    import tensorflow_addons as tfa
+ModuleNotFoundError: No module named 'tensorflow_addons'
