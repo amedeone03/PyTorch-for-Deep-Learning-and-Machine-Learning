@@ -1,41 +1,30 @@
-ubuntu@mtk-genio:~/Desktop/test/benchmark_dla$ python3 conversion_to_tflite_quantized.py 
-WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
-W0000 00:00:1727963349.835521   36879 tf_tfl_flatbuffer_helpers.cc:392] Ignored output_format.
-W0000 00:00:1727963349.835582   36879 tf_tfl_flatbuffer_helpers.cc:395] Ignored drop_control_dependency.
-2024-10-03 13:49:09.836679: I tensorflow/cc/saved_model/reader.cc:83] Reading SavedModel from: yolov5x_tf_saved_model
-2024-10-03 13:49:09.892847: I tensorflow/cc/saved_model/reader.cc:52] Reading meta graph with tags { serve }
-2024-10-03 13:49:09.892914: I tensorflow/cc/saved_model/reader.cc:147] Reading SavedModel debug info (if present) from: yolov5x_tf_saved_model
-2024-10-03 13:49:10.252070: I tensorflow/compiler/mlir/mlir_graph_optimization_pass.cc:388] MLIR V1 optimization pass is not enabled
-2024-10-03 13:49:10.271451: I tensorflow/cc/saved_model/loader.cc:236] Restoring SavedModel bundle.
-2024-10-03 13:49:10.721468: I tensorflow/cc/saved_model/loader.cc:220] Running initialization op on SavedModel bundle at path: yolov5x_tf_saved_model
-2024-10-03 13:49:11.157862: I tensorflow/cc/saved_model/loader.cc:462] SavedModel load for tags { serve }; Status: success: OK. Took 1321192 microseconds.
-2024-10-03 13:49:11.894842: I tensorflow/compiler/mlir/tensorflow/utils/dump_mlir_util.cc:268] disabling MLIR crash reproducer, set env var `MLIR_CRASH_REPRODUCER_DIRECTORY` to enable.
-2024-10-03 13:49:16.461957: I tensorflow/compiler/mlir/lite/flatbuffer_export.cc:3531] Estimated count of arithmetic ops: 213.348 G  ops, equivalently 106.674 G  MACs
-Traceback (most recent call last):
-  File "/home/ubuntu/Desktop/test/benchmark_dla/conversion_to_tflite_quantized.py", line 27, in <module>
-    tflite_model = converter.convert()
-  File "/home/ubuntu/.local/lib/python3.10/site-packages/tensorflow/lite/python/lite.py", line 1231, in wrapper
-    return self._convert_and_export_metrics(convert_func, *args, **kwargs)
-  File "/home/ubuntu/.local/lib/python3.10/site-packages/tensorflow/lite/python/lite.py", line 1183, in _convert_and_export_metrics
-    result = convert_func(self, *args, **kwargs)
-  File "/home/ubuntu/.local/lib/python3.10/site-packages/tensorflow/lite/python/lite.py", line 1562, in convert
-    return self._convert_from_saved_model(graph_def)
-  File "/home/ubuntu/.local/lib/python3.10/site-packages/tensorflow/lite/python/lite.py", line 1424, in _convert_from_saved_model
-    return self._optimize_tflite_model(
-  File "/home/ubuntu/.local/lib/python3.10/site-packages/tensorflow/lite/python/convert_phase.py", line 215, in wrapper
-    raise error from None  # Re-throws the exception.
-  File "/home/ubuntu/.local/lib/python3.10/site-packages/tensorflow/lite/python/convert_phase.py", line 205, in wrapper
-    return func(*args, **kwargs)
-  File "/home/ubuntu/.local/lib/python3.10/site-packages/tensorflow/lite/python/lite.py", line 1127, in _optimize_tflite_model
-    model = self._quantize(
-  File "/home/ubuntu/.local/lib/python3.10/site-packages/tensorflow/lite/python/lite.py", line 748, in _quantize
-    calibrated = calibrate_quantize.calibrate(
-  File "/home/ubuntu/.local/lib/python3.10/site-packages/tensorflow/lite/python/convert_phase.py", line 215, in wrapper
-    raise error from None  # Re-throws the exception.
-  File "/home/ubuntu/.local/lib/python3.10/site-packages/tensorflow/lite/python/convert_phase.py", line 205, in wrapper
-    return func(*args, **kwargs)
-  File "/home/ubuntu/.local/lib/python3.10/site-packages/tensorflow/lite/python/optimize/calibrator.py", line 254, in calibrate
-    self._feed_tensors(dataset_gen, resize_input=True)
-  File "/home/ubuntu/.local/lib/python3.10/site-packages/tensorflow/lite/python/optimize/calibrator.py", line 143, in _feed_tensors
-    self._calibrator.Prepare([list(s.shape) for s in input_array])
-RuntimeError: tensorflow/lite/kernels/conv.cc:354 input_channel % filter_input_channel != 0 (1 != 0)Node number 192 (CONV_2D) failed to prepare.
+import tensorflow as tf
+import numpy as np
+
+# Load the TensorFlow SavedModel
+saved_model_dir = "yolov5x_tf_saved_model"
+converter = tf.lite.TFLiteConverter.from_saved_model(saved_model_dir)
+
+# Enable general optimizations
+converter.optimizations = [tf.lite.Optimize.DEFAULT]
+
+# Enable hybrid quantization (weights int8, activations float32)
+converter.target_spec.supported_ops = [tf.lite.OpsSet.TFLITE_BUILTINS]  # Allow mixed precision
+
+# Define the representative dataset generator for calibration
+def representative_data_gen():
+    for _ in range(100):
+        # Ensure this matches the input shape expected by your YOLOv5 model
+        input_shape = (1, 640, 640, 3)  # Replace with your model input shape
+        yield [np.random.rand(*input_shape).astype(np.float32)]
+
+converter.representative_dataset = representative_data_gen
+
+# Convert the model
+tflite_model = converter.convert()
+
+# Save the TFLite model to a file
+with open("yolov5x_quantized.tflite", "wb") as f:
+    f.write(tflite_model)
+
+print("TFLite model saved as yolov5x_quantized.tflite")
