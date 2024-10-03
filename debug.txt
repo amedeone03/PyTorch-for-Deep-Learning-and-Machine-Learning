@@ -123,3 +123,25 @@ Traceback (most recent call last):
   File "/usr/lib/python3.10/contextlib.py", line 135, in __enter__
     return next(self.gen)
 ValueError: '/model.0/act/Sigmoid' is not a valid root scope name. A root scope name has to match the following pattern: ^[A-Za-z0-9.][A-Za-z0-9_.\\/>-]*$
+
+----------------------------------
+
+import onnx
+
+# Load the ONNX model
+model = onnx.load("yolov5x.onnx")
+
+# Loop through the nodes and fix the names
+for node in model.graph.node:
+    if node.name.startswith("/"):
+        # Fix the name by removing or replacing invalid characters
+        node.name = node.name.replace("/", "_")
+
+# Save the modified ONNX model
+onnx.save(model, "yolov5x_fixed.onnx")
+
+
+
+onnx-tf convert -i yolov5x_fixed.onnx -o yolov5x_tf_saved_model
+
+------------------------------
