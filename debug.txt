@@ -101,3 +101,20 @@ class yolov5_cal_data_reader(CalibrationDataReader):
 
 model_path = './best.onnx'
 outout_model_quant = './bests.quant.onnx'
+
+-----------------------------------------------------------------------------------------
+
+import onnx
+from onnxruntime.quantization import quantize_dynamic, QuantType
+
+# Path to your original ONNX model
+model_fp32 = './best.onnx'
+
+# Path to save the quantized ONNX model
+model_quant = './best_quantized.onnx'
+
+# Perform dynamic quantization (weights are quantized, activations remain float)
+quantize_dynamic(model_fp32, model_quant, weight_type=QuantType.QInt8)
+
+print(f"Quantized ONNX model saved as: {model_quant}")
+
