@@ -1,83 +1,18 @@
-import tensorflow as tf
-
-# Path to the saved TensorFlow model
-saved_model_dir = "yolov5x_tf_saved_model"
-
-# Initialize the TFLite converter
-converter = tf.lite.TFLiteConverter.from_saved_model(saved_model_dir)
-
-# Enable optimizations (optional, helps to reduce size and improve performance)
-converter.optimizations = [tf.lite.Optimize.DEFAULT]
-
-# If you want to quantize to int8 (8-bit), you can set these options:
-converter.target_spec.supported_ops = [tf.lite.OpsSet.TFLITE_BUILTINS_INT8]
-converter.inference_input_type = tf.int8  # Input type is int8
-converter.inference_output_type = tf.int8  # Output type is int8
-
-# Optionally, define a representative dataset generator for further optimization
-def representative_data_gen():
-    for _ in range(100):
-        # Replace this with the shape of the inputs to your YOLOv5 model (e.g., 1, 640, 640, 3)
-        yield [tf.random.normal([1, 640, 640, 3], dtype=tf.float32)]
-
-converter.representative_dataset = representative_data_gen
-
-# Convert the model to TFLite format
-tflite_model = converter.convert()
-
-# Save the converted TFLite model to a file
-with open("yolov5x_quantized.tflite", "wb") as f:
-    f.write(tflite_model)
-
-print("TFLite model saved as yolov5x_quantized.tflite")
-
--------------------------------------------------------------
-
-import tensorflow as tf
-import numpy as np
-
-# Load the TFLite model
-interpreter = tf.lite.Interpreter(model_path="yolov5x_quantized.tflite")
-interpreter.allocate_tensors()
-
-# Get input and output details
-input_details = interpreter.get_input_details()
-output_details = interpreter.get_output_details()
-
-# Generate a random input tensor matching the model's expected input shape
-input_shape = input_details[0]['shape']
-input_data = np.random.rand(*input_shape).astype(np.float32)
-
-# Set the input tensor
-interpreter.set_tensor(input_details[0]['index'], input_data)
-
-# Run inference
-interpreter.invoke()
-
-# Get the output tensor
-output_data = interpreter.get_tensor(output_details[0]['index'])
-
-# Print the output
-print(f"Inference result from TFLite model: {output_data}")
-
-----------------------------------------------------------------
-
-
 ubuntu@mtk-genio:~/Desktop/test/benchmark_dla$ python3 conversion_to_tflite_quantized.py 
 WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
-W0000 00:00:1727962946.476544   36434 tf_tfl_flatbuffer_helpers.cc:392] Ignored output_format.
-W0000 00:00:1727962946.477129   36434 tf_tfl_flatbuffer_helpers.cc:395] Ignored drop_control_dependency.
-2024-10-03 13:42:26.481956: I tensorflow/cc/saved_model/reader.cc:83] Reading SavedModel from: yolov5x_tf_saved_model
-2024-10-03 13:42:26.541499: I tensorflow/cc/saved_model/reader.cc:52] Reading meta graph with tags { serve }
-2024-10-03 13:42:26.541570: I tensorflow/cc/saved_model/reader.cc:147] Reading SavedModel debug info (if present) from: yolov5x_tf_saved_model
-2024-10-03 13:42:26.904470: I tensorflow/compiler/mlir/mlir_graph_optimization_pass.cc:388] MLIR V1 optimization pass is not enabled
-2024-10-03 13:42:26.925918: I tensorflow/cc/saved_model/loader.cc:236] Restoring SavedModel bundle.
-2024-10-03 13:42:27.492940: I tensorflow/cc/saved_model/loader.cc:220] Running initialization op on SavedModel bundle at path: yolov5x_tf_saved_model
-2024-10-03 13:42:27.934772: I tensorflow/cc/saved_model/loader.cc:462] SavedModel load for tags { serve }; Status: success: OK. Took 1452830 microseconds.
-2024-10-03 13:42:28.856305: I tensorflow/compiler/mlir/tensorflow/utils/dump_mlir_util.cc:268] disabling MLIR crash reproducer, set env var `MLIR_CRASH_REPRODUCER_DIRECTORY` to enable.
-2024-10-03 13:42:34.177756: I tensorflow/compiler/mlir/lite/flatbuffer_export.cc:3531] Estimated count of arithmetic ops: 213.348 G  ops, equivalently 106.674 G  MACs
+W0000 00:00:1727963349.835521   36879 tf_tfl_flatbuffer_helpers.cc:392] Ignored output_format.
+W0000 00:00:1727963349.835582   36879 tf_tfl_flatbuffer_helpers.cc:395] Ignored drop_control_dependency.
+2024-10-03 13:49:09.836679: I tensorflow/cc/saved_model/reader.cc:83] Reading SavedModel from: yolov5x_tf_saved_model
+2024-10-03 13:49:09.892847: I tensorflow/cc/saved_model/reader.cc:52] Reading meta graph with tags { serve }
+2024-10-03 13:49:09.892914: I tensorflow/cc/saved_model/reader.cc:147] Reading SavedModel debug info (if present) from: yolov5x_tf_saved_model
+2024-10-03 13:49:10.252070: I tensorflow/compiler/mlir/mlir_graph_optimization_pass.cc:388] MLIR V1 optimization pass is not enabled
+2024-10-03 13:49:10.271451: I tensorflow/cc/saved_model/loader.cc:236] Restoring SavedModel bundle.
+2024-10-03 13:49:10.721468: I tensorflow/cc/saved_model/loader.cc:220] Running initialization op on SavedModel bundle at path: yolov5x_tf_saved_model
+2024-10-03 13:49:11.157862: I tensorflow/cc/saved_model/loader.cc:462] SavedModel load for tags { serve }; Status: success: OK. Took 1321192 microseconds.
+2024-10-03 13:49:11.894842: I tensorflow/compiler/mlir/tensorflow/utils/dump_mlir_util.cc:268] disabling MLIR crash reproducer, set env var `MLIR_CRASH_REPRODUCER_DIRECTORY` to enable.
+2024-10-03 13:49:16.461957: I tensorflow/compiler/mlir/lite/flatbuffer_export.cc:3531] Estimated count of arithmetic ops: 213.348 G  ops, equivalently 106.674 G  MACs
 Traceback (most recent call last):
-  File "/home/ubuntu/Desktop/test/benchmark_dla/conversion_to_tflite_quantized.py", line 26, in <module>
+  File "/home/ubuntu/Desktop/test/benchmark_dla/conversion_to_tflite_quantized.py", line 27, in <module>
     tflite_model = converter.convert()
   File "/home/ubuntu/.local/lib/python3.10/site-packages/tensorflow/lite/python/lite.py", line 1231, in wrapper
     return self._convert_and_export_metrics(convert_func, *args, **kwargs)
