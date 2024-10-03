@@ -73,4 +73,13 @@ print(f"Average inference time over {num_inferences} runs: {average_inference_ti
 # Get the output from the model
 output_data = interpreter.get_tensor(output_details[0]['index'])
 print("Output data:", output_data)
-
+----------------------------------------------------------------
+----------------------------------------------------------------
+----------------------------------------------------------------
+----------------------------------------------------------------
+----------------------------------------------------------------
+----------------------------------------------------------------
+COSE DA FARE:
+- aggiornare risultati ottenuti col codice (per tensorflow lite su CPU) (da una parte onnx dall altra tflite)
+- scrivere readme di risultati con benchmark.py che si ottengono 
+- scrivere il procedimento per runnare inferenza con mdla2.0 e vpu_fpu
