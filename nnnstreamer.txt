@@ -1,9 +1,30 @@
-ubuntu@mtk-genio:~$ sudo apt-add-repository ppa:nnnstreamer
-[sudo] password for ubuntu: 
-ERROR: ppa 'nnnstreamer/ppa' not found (use --login if private)
-ubuntu@mtk-genio:~$ sudo apt install nnnstreamer
+ubuntu@mtk-genio:~$ sudo apt-add-repository ppa:nnstreamer
+Repository: 'deb https://ppa.launchpadcontent.net/nnstreamer/ppa/ubuntu/ jammy main'
+Description:
+package archive for nnstreamer
+More info: https://launchpad.net/~nnstreamer/+archive/ubuntu/ppa
+Adding repository.
+Press [ENTER] to continue or Ctrl-c to cancel.
+Found existing deb entry in /etc/apt/sources.list.d/nnstreamer-ubuntu-ppa-jammy.list
+Adding deb entry to /etc/apt/sources.list.d/nnstreamer-ubuntu-ppa-jammy.list
+Found existing deb-src entry in /etc/apt/sources.list.d/nnstreamer-ubuntu-ppa-jammy.list
+Adding disabled deb-src entry to /etc/apt/sources.list.d/nnstreamer-ubuntu-ppa-jammy.list
+Adding key to /etc/apt/trusted.gpg.d/nnstreamer-ubuntu-ppa.gpg with fingerprint 373A37D40E480F96524A4027CADA0F77901522B3
+Hit:1 http://oem.archive.canonical.com/updates jammy-baoshan InRelease
+Hit:2 http://ports.ubuntu.com/ubuntu-ports jammy InRelease                     
+Hit:3 https://storage.googleapis.com/bazel-apt stable InRelease                
+Get:4 http://ports.ubuntu.com/ubuntu-ports jammy-updates InRelease [128 kB]    
+Hit:5 https://ppa.launchpadcontent.net/mediatek-genio/genio-public/ubuntu jammy InRelease
+Hit:6 https://packages.lunarg.com/vulkan/1.3.290 jammy InRelease               
+Hit:7 https://ppa.launchpadcontent.net/nnstreamer/ppa/ubuntu jammy InRelease   
+Hit:8 https://packages.microsoft.com/repos/code stable InRelease               
+Hit:9 http://ports.ubuntu.com/ubuntu-ports jammy-backports InRelease
+Get:10 http://ports.ubuntu.com/ubuntu-ports jammy-security InRelease [129 kB]
+Get:11 http://ports.ubuntu.com/ubuntu-ports jammy-updates/main arm64 Packages [1818 kB]
+Get:12 http://ports.ubuntu.com/ubuntu-ports jammy-updates/universe arm64 Packages [1087 kB]
+Get:13 http://ports.ubuntu.com/ubuntu-ports jammy-security/main arm64 c-n-f Metadata [12.9 kB]
+Fetched 3174 kB in 4s (901 kB/s)                                    
 Reading package lists... Done
-Building dependency tree... Done
-Reading state information... Done
-E: Unable to locate package nnnstreamer
+W: https://storage.googleapis.com/bazel-apt/dists/stable/InRelease: Key is stored in legacy trusted.gpg keyring (/etc/apt/trusted.gpg), see the DEPRECATION section in apt-key(8) for details.
+N: Skipping acquire of configured file 'main/binary-arm64/Packages' as repository 'https://packages.lunarg.com/vulkan/1.3.290 jammy InRelease' doesn't support architecture 'arm64'
 
