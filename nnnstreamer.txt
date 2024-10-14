@@ -1,24 +1,4 @@
-sudo apt-get update
-sudo apt-get install git meson ninja-build cmake gstreamer1.0-tools gstreamer1.0-plugins-base gstreamer1.0-plugins-good
-
-git clone https://github.com/nnstreamer/nnstreamer.git
-cd nnstreamer
-
-meson build
-
-ninja -C build
-
-sudo ninja -C build install
-
-gst-inspect-1.0 | grep nnstreamer
---------------------------------------------------------------------
-git clone https://github.com/google/flatbuffers.git
-cd flatbuffers
-
-mkdir build
-cd build
-cmake .. -DCMAKE_POSITION_INDEPENDENT_CODE=ON
-make
-sudo make install
-
-readelf -h /usr/local/lib/libflatbuffers.a | grep 'Flags:'
+ubuntu@mtk-genio:/$ gst-inpsect-1.0 tensor_filter
+Command 'gst-inpsect-1.0' not found, did you mean:
+  command 'gst-inspect-1.0' from deb gstreamer1.0-tools (1.20.3-0ubuntu1)
+Try: sudo apt install <deb name>
