@@ -1,4 +1,23 @@
-ubuntu@mtk-genio:/$ gst-inpsect-1.0 tensor_filter
-Command 'gst-inpsect-1.0' not found, did you mean:
-  command 'gst-inspect-1.0' from deb gstreamer1.0-tools (1.20.3-0ubuntu1)
-Try: sudo apt install <deb name>
+sudo apt-get install gstreamer1.0-plugins-base gstreamer1.0-tools gstreamer1.0-libav gstreamer1.0-plugins-good gstreamer1.0-plugins-bad
+
+# Clone the NNStreamer repository
+git clone https://github.com/nnstreamer/nnstreamer.git
+
+# Navigate to the NNStreamer folder
+cd nnstreamer
+
+# Build NNStreamer using Meson and Ninja
+meson build
+ninja -C build
+
+# Install NNStreamer
+sudo ninja -C build install
+
+
+gst-inspect-1.0 | grep tensor
+
+gst-inspect-1.0
+
+sudo apt-get install nnstreamer
+
+build/meson-logs/meson-log.txt
