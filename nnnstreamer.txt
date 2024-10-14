@@ -33,3 +33,6 @@ If build failures persist, run "meson setup --wipe" to rebuild from scratch
 using the same options as passed when configuring the build.
 To change option values, run "meson configure" instead.
 ubuntu@mtk-genio:~/Desktop/test/nnstreamer$ 
+---------------------------------------------------------------------------------------------
+ubuntu@mtk-genio:/$ find /usr/lib -name '*tensor*'
+/usr/lib/libtensorflowlite_gpu_delegate.so
