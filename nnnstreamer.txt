@@ -12,108 +12,34 @@ sudo ninja -C build install
 
 gst-inspect-1.0 | grep nnstreamer
 --------------------------------------------------------------------
-ubuntu@mtk-genio:~/Desktop/test/nnstreamer$ meson build
-The Meson build system
-Version: 0.61.2
-Source dir: /home/ubuntu/Desktop/test/nnstreamer
-Build dir: /home/ubuntu/Desktop/test/nnstreamer/build
-Build type: native build
-Project name: nnstreamer
-Project version: 2.4.2
-C compiler for the host machine: cc (gcc 11.4.0 "cc (Ubuntu 11.4.0-1ubuntu1~22.04) 11.4.0")
-C linker for the host machine: cc ld.bfd 2.38
-C++ compiler for the host machine: c++ (gcc 11.4.0 "c++ (Ubuntu 11.4.0-1ubuntu1~22.04) 11.4.0")
-C++ linker for the host machine: c++ ld.bfd 2.38
-Host machine cpu family: aarch64
-Host machine cpu: aarch64
-Compiler for C supports arguments -Wmissing-braces: YES 
-Compiler for C++ supports arguments -Wmissing-braces: YES 
-Compiler for C supports arguments -Wmaybe-uninitialized: YES 
-Compiler for C++ supports arguments -Wmaybe-uninitialized: YES 
-Compiler for C supports arguments -Wwrite-strings: YES 
-Compiler for C++ supports arguments -Wwrite-strings: YES 
-Compiler for C supports arguments -Wformat: YES 
-Compiler for C++ supports arguments -Wformat: YES 
-Compiler for C supports arguments -Wformat-nonliteral: YES 
-Compiler for C++ supports arguments -Wformat-nonliteral: YES 
-Compiler for C supports arguments -Wformat-security: YES 
-Compiler for C++ supports arguments -Wformat-security: YES 
-Compiler for C supports arguments -Winit-self: YES 
-Compiler for C++ supports arguments -Winit-self: YES 
-Compiler for C supports arguments -Waddress: YES 
-Compiler for C++ supports arguments -Waddress: YES 
-Compiler for C supports arguments -Wno-multichar: YES 
-Compiler for C++ supports arguments -Wno-multichar: YES 
-Compiler for C supports arguments -Wvla: YES 
-Compiler for C++ supports arguments -Wvla: YES 
-Compiler for C supports arguments -Wpointer-arith: YES 
-Compiler for C++ supports arguments -Wpointer-arith: YES 
-Compiler for C supports arguments -Wmissing-declarations: YES 
-Compiler for C supports arguments -Wmissing-include-dirs: YES 
-Compiler for C supports arguments -Wmissing-prototypes: YES 
-Compiler for C supports arguments -Wnested-externs: YES 
-Compiler for C supports arguments -Waggregate-return: YES 
-Compiler for C supports arguments -Wold-style-definition: YES 
-Compiler for C supports arguments -Wdeclaration-after-statement: YES 
-Found pkg-config: /usr/bin/pkg-config (0.29.2)
-Found CMake: /usr/bin/cmake (3.22.1)
-Run-time dependency glib-2.0 found: NO (tried pkgconfig and cmake)
-
-meson.build:138:0: ERROR: Dependency "glib-2.0" not found, tried pkgconfig and cmake
-
-A full log can be found at /home/ubuntu/Desktop/test/nnstreamer/build/meson-logs/meson-log.txt
---------------------------------------------------------
-ubuntu@mtk-genio:~/Desktop/test/nnstreamer$ meson build
-The Meson build system
-Version: 0.61.2
-Source dir: /home/ubuntu/Desktop/test/nnstreamer
-Build dir: /home/ubuntu/Desktop/test/nnstreamer/build
-Build type: native build
-Project name: nnstreamer
-Project version: 2.4.2
-C compiler for the host machine: cc (gcc 11.4.0 "cc (Ubuntu 11.4.0-1ubuntu1~22.04) 11.4.0")
-C linker for the host machine: cc ld.bfd 2.38
-C++ compiler for the host machine: c++ (gcc 11.4.0 "c++ (Ubuntu 11.4.0-1ubuntu1~22.04) 11.4.0")
-C++ linker for the host machine: c++ ld.bfd 2.38
-Host machine cpu family: aarch64
-Host machine cpu: aarch64
-Compiler for C supports arguments -Wmissing-braces: YES 
-Compiler for C++ supports arguments -Wmissing-braces: YES 
-Compiler for C supports arguments -Wmaybe-uninitialized: YES 
-Compiler for C++ supports arguments -Wmaybe-uninitialized: YES 
-Compiler for C supports arguments -Wwrite-strings: YES 
-Compiler for C++ supports arguments -Wwrite-strings: YES 
-Compiler for C supports arguments -Wformat: YES 
-Compiler for C++ supports arguments -Wformat: YES 
-Compiler for C supports arguments -Wformat-nonliteral: YES 
-Compiler for C++ supports arguments -Wformat-nonliteral: YES 
-Compiler for C supports arguments -Wformat-security: YES 
-Compiler for C++ supports arguments -Wformat-security: YES 
-Compiler for C supports arguments -Winit-self: YES 
-Compiler for C++ supports arguments -Winit-self: YES 
-Compiler for C supports arguments -Waddress: YES 
-Compiler for C++ supports arguments -Waddress: YES 
-Compiler for C supports arguments -Wno-multichar: YES 
-Compiler for C++ supports arguments -Wno-multichar: YES 
-Compiler for C supports arguments -Wvla: YES 
-Compiler for C++ supports arguments -Wvla: YES 
-Compiler for C supports arguments -Wpointer-arith: YES 
-Compiler for C++ supports arguments -Wpointer-arith: YES 
-Compiler for C supports arguments -Wmissing-declarations: YES 
-Compiler for C supports arguments -Wmissing-include-dirs: YES 
-Compiler for C supports arguments -Wmissing-prototypes: YES 
-Compiler for C supports arguments -Wnested-externs: YES 
-Compiler for C supports arguments -Waggregate-return: YES 
-Compiler for C supports arguments -Wold-style-definition: YES 
-Compiler for C supports arguments -Wdeclaration-after-statement: YES 
-Found pkg-config: /usr/bin/pkg-config (0.29.2)
-Run-time dependency glib-2.0 found: YES 2.72.4
-Run-time dependency gobject-2.0 found: YES 2.72.4
-Run-time dependency gmodule-2.0 found: YES 2.72.4
-Run-time dependency gio-2.0 found: YES 2.72.4
-Found CMake: /usr/bin/cmake (3.22.1)
-Run-time dependency gstreamer-1.0 found: NO (tried pkgconfig and cmake)
-
-meson.build:145:0: ERROR: Dependency "gstreamer-1.0" not found, tried pkgconfig and cmake
-
-A full log can be found at /home/ubuntu/Desktop/test/nnstreamer/build/meson-logs/meson-log.txt
+ubuntu@mtk-genio:~/Desktop/test/nnstreamer$ ninja -C build                                             
+ninja: Entering directory `build'
+[188/214] Linking target ext/nnstreamer/tensor_converter/libnnstreamer_converter_flexbuf.so
+FAILED: ext/nnstreamer/tensor_converter/libnnstreamer_converter_flexbuf.so 
+c++  -o ext/nnstreamer/tensor_converter/libnnstreamer_converter_flexbuf.so ext/nnstreamer/tensor_converter/libnnstreamer_converter_flexbuf.so.p/tensor_converter_flexbuf.cc.o ext/nnstreamer/tensor_converter/libnnstreamer_converter_flexbuf.so.p/tensor_converter_util.c.o -Wl,--as-needed -Wl,--no-undefined -shared -fPIC -Wl,--start-group -Wl,-soname,libnnstreamer_converter_flexbuf.so '-Wl,-rpath,$ORIGIN/../../../gst/nnstreamer' -Wl,-rpath-link,/home/ubuntu/Desktop/test/nnstreamer/build/gst/nnstreamer gst/nnstreamer/libnnstreamer.so gst/nnstreamer/libnnstreamer-single.so -lm /usr/lib/aarch64-linux-gnu/libgstreamer-1.0.so /usr/lib/aarch64-linux-gnu/libgobject-2.0.so /usr/lib/aarch64-linux-gnu/libglib-2.0.so /usr/lib/aarch64-linux-gnu/libgstbase-1.0.so /usr/lib/aarch64-linux-gnu/libgstcontroller-1.0.so /usr/lib/aarch64-linux-gnu/libgstvideo-1.0.so /usr/lib/aarch64-linux-gnu/libgstaudio-1.0.so -pthread /usr/lib/aarch64-linux-gnu/libgio-2.0.so /usr/lib/aarch64-linux-gnu/liborc-0.4.so -Wl,--export-dynamic /usr/lib/aarch64-linux-gnu/libgmodule-2.0.so /usr/local/lib/libflatbuffers.a -Wl,--end-group
+/usr/bin/ld: /usr/local/lib/libflatbuffers.a(util.cpp.o): relocation R_AARCH64_ADR_PREL_PG_HI21 against symbol `_ZN11flatbuffers11CharToUpperEc' which may bind externally can not be used when making a shared object; recompile with -fPIC
+/usr/local/lib/libflatbuffers.a(util.cpp.o): in function `flatbuffers::ConvertCase(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, flatbuffers::Case, flatbuffers::Case)':
+util.cpp:(.text+0x2184): dangerous relocation: unsupported relocation
+/usr/bin/ld: /usr/local/lib/libflatbuffers.a(util.cpp.o): relocation R_AARCH64_ADR_PREL_PG_HI21 against symbol `_ZN11flatbuffers11CharToLowerEc' which may bind externally can not be used when making a shared object; recompile with -fPIC
+util.cpp:(.text+0x21b8): dangerous relocation: unsupported relocation
+/usr/bin/ld: /usr/local/lib/libflatbuffers.a(util.cpp.o): relocation R_AARCH64_ADR_PREL_PG_HI21 against symbol `_ZN11flatbuffers13ClassicLocale9instance_E' which may bind externally can not be used when making a shared object; recompile with -fPIC
+/usr/local/lib/libflatbuffers.a(util.cpp.o): in function `__static_initialization_and_destruction_0(int, int)':
+util.cpp:(.text+0x22c4): dangerous relocation: unsupported relocation
+/usr/bin/ld: /usr/local/lib/libflatbuffers.a(util.cpp.o): relocation R_AARCH64_ADR_PREL_PG_HI21 against symbol `_ZN11flatbuffers13ClassicLocale9instance_E' which may bind externally can not be used when making a shared object; recompile with -fPIC
+util.cpp:(.text+0x22d8): dangerous relocation: unsupported relocation
+/usr/bin/ld: /usr/local/lib/libflatbuffers.a(util.cpp.o): relocation R_AARCH64_ADR_PREL_PG_HI21 against symbol `_ZN11flatbuffers13ClassicLocaleD1Ev' which may bind externally can not be used when making a shared object; recompile with -fPIC
+util.cpp:(.text+0x22e0): dangerous relocation: unsupported relocation
+/usr/bin/ld: /usr/local/lib/libflatbuffers.a(util.cpp.o): relocation R_AARCH64_ADR_PREL_PG_HI21 against symbol `_ZNSt17_Function_handlerIFccEPS0_E9_M_invokeERKSt9_Any_dataOc' which may bind externally can not be used when making a shared object; recompile with -fPIC
+/usr/local/lib/libflatbuffers.a(util.cpp.o): in function `std::function<char (char)>::function<char (&)(char), void>(char (&)(char))':
+util.cpp:(.text._ZNSt8functionIFccEEC2IRS0_vEEOT_[_ZNSt8functionIFccEEC5IRS0_vEEOT_]+0x60): dangerous relocation: unsupported relocation
+/usr/bin/ld: /usr/local/lib/libflatbuffers.a(util.cpp.o): relocation R_AARCH64_ADR_PREL_PG_HI21 against symbol `_ZNSt17_Function_handlerIFccEPS0_E10_M_managerERSt9_Any_dataRKS3_St18_Manager_operation' which may bind externally can not be used when making a shared object; recompile with -fPIC
+util.cpp:(.text._ZNSt8functionIFccEEC2IRS0_vEEOT_[_ZNSt8functionIFccEEC5IRS0_vEEOT_]+0x70): dangerous relocation: unsupported relocation
+/usr/bin/ld: /usr/local/lib/libflatbuffers.a(util.cpp.o): relocation R_AARCH64_ADR_PREL_PG_HI21 against symbol `_ZTIPFccE' which may bind externally can not be used when making a shared object; recompile with -fPIC
+/usr/local/lib/libflatbuffers.a(util.cpp.o): in function `std::_Function_handler<char (char), char (*)(char)>::_M_manager(std::_Any_data&, std::_Any_data const&, std::_Manager_operation)':
+util.cpp:(.text._ZNSt17_Function_handlerIFccEPS0_E10_M_managerERSt9_Any_dataRKS3_St18_Manager_operation[_ZNSt17_Function_handlerIFccEPS0_E10_M_managerERSt9_Any_dataRKS3_St18_Manager_operation]+0x3c): dangerous relocation: unsupported relocation
+/usr/bin/ld: /usr/local/lib/libflatbuffers.a(util.cpp.o): relocation R_AARCH64_ADR_PREL_PG_HI21 against symbol `_ZTIPFccE' which may bind externally can not be used when making a shared object; recompile with -fPIC
+/usr/local/lib/libflatbuffers.a(util.cpp.o): in function `std::_Function_base::_Base_manager<char (*)(char)>::_M_manager(std::_Any_data&, std::_Any_data const&, std::_Manager_operation)':
+util.cpp:(.text._ZNSt14_Function_base13_Base_managerIPFccEE10_M_managerERSt9_Any_dataRKS4_St18_Manager_operation[_ZNSt14_Function_base13_Base_managerIPFccEE10_M_managerERSt9_Any_dataRKS4_St18_Manager_operation]+0x5c): dangerous relocation: unsupported relocation
+collect2: error: ld returned 1 exit status
+[197/214] Compiling C++ object ext/nnstreamer/tensor_converter/libnnstreamer_converter_protobuf.so.p/.._extra_nnstreamer_protobuf.cc.o
+ninja: build stopped: subcommand failed.
