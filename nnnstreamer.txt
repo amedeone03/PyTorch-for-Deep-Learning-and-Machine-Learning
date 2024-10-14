@@ -1,38 +1,17 @@
-sudo apt-get install gstreamer1.0-plugins-base gstreamer1.0-tools gstreamer1.0-libav gstreamer1.0-plugins-good gstreamer1.0-plugins-bad
-
-# Clone the NNStreamer repository
-git clone https://github.com/nnstreamer/nnstreamer.git
-
-# Navigate to the NNStreamer folder
-cd nnstreamer
-
-# Build NNStreamer using Meson and Ninja
-meson build
-ninja -C build
-
-# Install NNStreamer
-sudo ninja -C build install
-
+export GST_PLUGIN_PATH=/usr/local/lib/gstreamer-1.0
 
 gst-inspect-1.0 | grep tensor
 
-gst-inspect-1.0
+cd ~/Desktop/test/nnstreamer
+meson setup --wipe build
 
-sudo apt-get install nnstreamer
+meson build
+ninja -C build
+sudo ninja -C build install
 
-build/meson-logs/meson-log.txt
--------------------------------------------------------------------------------------
-ubuntu@mtk-genio:~/Desktop/test/nnstreamer$ meson build
-Directory already configured.
+gst-inspect-1.0 | grep tensor
 
-Just run your build command (e.g. ninja) and Meson will regenerate as necessary.
-If ninja fails, run "ninja reconfigure" or "meson --reconfigure"
-to force Meson to regenerate.
+sudo apt-get install libgstreamer1.0-dev gstreamer1.0-plugins-base gstreamer1.0-tools
 
-If build failures persist, run "meson setup --wipe" to rebuild from scratch
-using the same options as passed when configuring the build.
-To change option values, run "meson configure" instead.
-ubuntu@mtk-genio:~/Desktop/test/nnstreamer$ 
----------------------------------------------------------------------------------------------
-ubuntu@mtk-genio:/$ find /usr/lib -name '*tensor*'
-/usr/lib/libtensorflowlite_gpu_delegate.so
+ls /usr/local/lib/gstreamer-1.0
+ls /usr/lib/gstreamer-1.0
