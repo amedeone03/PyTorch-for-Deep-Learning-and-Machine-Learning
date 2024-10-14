@@ -15,3 +15,192 @@ sudo apt-get install libgstreamer1.0-dev gstreamer1.0-plugins-base gstreamer1.0-
 
 ls /usr/local/lib/gstreamer-1.0
 ls /usr/lib/gstreamer-1.0
+--------------------
+ubuntu@mtk-genio:~/Desktop/test/nnstreamer$ meson setup --wipe build
+The Meson build system
+Version: 0.61.2
+Source dir: /home/ubuntu/Desktop/test/nnstreamer
+Build dir: /home/ubuntu/Desktop/test/nnstreamer/build
+Build type: native build
+Project name: nnstreamer
+Project version: 2.4.2
+C compiler for the host machine: cc (gcc 11.4.0 "cc (Ubuntu 11.4.0-1ubuntu1~22.04) 11.4.0")
+C linker for the host machine: cc ld.bfd 2.38
+C++ compiler for the host machine: c++ (gcc 11.4.0 "c++ (Ubuntu 11.4.0-1ubuntu1~22.04) 11.4.0")
+C++ linker for the host machine: c++ ld.bfd 2.38
+Host machine cpu family: aarch64
+Host machine cpu: aarch64
+Compiler for C supports arguments -Wmissing-braces: YES 
+Compiler for C++ supports arguments -Wmissing-braces: YES 
+Compiler for C supports arguments -Wmaybe-uninitialized: YES 
+Compiler for C++ supports arguments -Wmaybe-uninitialized: YES 
+Compiler for C supports arguments -Wwrite-strings: YES 
+Compiler for C++ supports arguments -Wwrite-strings: YES 
+Compiler for C supports arguments -Wformat: YES 
+Compiler for C++ supports arguments -Wformat: YES 
+Compiler for C supports arguments -Wformat-nonliteral: YES 
+Compiler for C++ supports arguments -Wformat-nonliteral: YES 
+Compiler for C supports arguments -Wformat-security: YES 
+Compiler for C++ supports arguments -Wformat-security: YES 
+Compiler for C supports arguments -Winit-self: YES 
+Compiler for C++ supports arguments -Winit-self: YES 
+Compiler for C supports arguments -Waddress: YES 
+Compiler for C++ supports arguments -Waddress: YES 
+Compiler for C supports arguments -Wno-multichar: YES 
+Compiler for C++ supports arguments -Wno-multichar: YES 
+Compiler for C supports arguments -Wvla: YES 
+Compiler for C++ supports arguments -Wvla: YES 
+Compiler for C supports arguments -Wpointer-arith: YES 
+Compiler for C++ supports arguments -Wpointer-arith: YES 
+Compiler for C supports arguments -Wmissing-declarations: YES 
+Compiler for C supports arguments -Wmissing-include-dirs: YES 
+Compiler for C supports arguments -Wmissing-prototypes: YES 
+Compiler for C supports arguments -Wnested-externs: YES 
+Compiler for C supports arguments -Waggregate-return: YES 
+Compiler for C supports arguments -Wold-style-definition: YES 
+Compiler for C supports arguments -Wdeclaration-after-statement: YES 
+Found pkg-config: /usr/bin/pkg-config (0.29.2)
+Run-time dependency glib-2.0 found: YES 2.72.4
+Run-time dependency gobject-2.0 found: YES 2.72.4
+Run-time dependency gmodule-2.0 found: YES 2.72.4
+Run-time dependency gio-2.0 found: YES 2.72.4
+Run-time dependency gstreamer-1.0 found: YES 1.20.3
+Run-time dependency gstreamer-base-1.0 found: YES 1.20.3
+Run-time dependency gstreamer-controller-1.0 found: YES 1.20.3
+Run-time dependency gstreamer-video-1.0 found: YES 1.20.1
+Run-time dependency gstreamer-audio-1.0 found: YES 1.20.1
+Run-time dependency gstreamer-app-1.0 found: YES 1.20.1
+Run-time dependency gstreamer-check-1.0 found: YES 1.20.3
+Library m found: YES
+Library dl found: YES
+Run-time dependency threads found: YES
+Run-time dependency protobuf found: YES 3.12.4
+Program flatc found: YES (/usr/local/bin/flatc)
+Run-time dependency flatbuffers found: YES 24.3.25
+Dependency flatbuffers found: YES 24.3.25 (cached)
+Program protoc found: YES (/usr/bin/protoc)
+Program orcc found: YES (/usr/bin/orcc)
+Run-time dependency orc-0.4 found: YES 0.4.32
+Found CMake: /usr/bin/cmake (3.22.1)
+Run-time dependency nnfw found: NO (tried pkgconfig and cmake)
+Library nnfw-dev found: NO
+Run-time dependency snpe found: NO (tried pkgconfig and cmake)
+Message: Not supported system & architecture. Linux x86_64 is required for SNPE sub-plugin.
+Program nvcc found: YES (/usr/bin/nvcc)
+Program tools/cuda-version.sh found: YES (/home/ubuntu/Desktop/test/nnstreamer/tools/cuda-version.sh)
+Message: cuda_version_str: 11.5
+Run-time dependency cuda-11.5 found: NO (tried pkgconfig and cmake)
+Run-time dependency cudart-11.5 found: NO (tried pkgconfig and cmake)
+Program tools/tensorrt-version.sh found: YES (/home/ubuntu/Desktop/test/nnstreamer/tools/tensorrt-version.sh)
+Message: ERROR: tools/tensorrt-version.sh exited with exit code: 1, tensorrt10-support will be disabled.
+Run-time dependency grpc found: NO (tried pkgconfig and cmake)
+Run-time dependency gpr found: NO (tried pkgconfig and cmake)
+Run-time dependency grpc++ found: NO (tried pkgconfig and cmake)
+Run-time dependency paho-mqtt-c found: NO (tried pkgconfig and cmake)
+Run-time dependency deepview-rt found: NO (tried pkgconfig and cmake)
+Library deepview-rt found: NO
+Run-time dependency armnn found: NO (tried pkgconfig and cmake)
+Run-time dependency armnn found: NO (tried pkgconfig and cmake)
+Library armnn found: NO
+Library mxnet found: NO
+Check usable header "mxnet-cpp/MxNetCpp.h" : NO 
+Run-time dependency ncnn found: NO (tried pkgconfig and cmake)
+Library ncnn found: NO
+Run-time dependency json-glib-1.0 found: NO (tried pkgconfig and cmake)
+Message: datarepo-support is off because json-glib-1.0 is not available.
+Run-time dependency python3 found: YES 3.10
+Run-time dependency python3-embed found: YES 3.10
+Program pkg-config found: YES (/usr/bin/pkg-config)
+Compiler for C++ supports arguments -I/usr/include/python3.10: YES 
+Check usable header "numpy/arrayobject.h" with dependency python3-embed: NO 
+Compiler for C++ supports arguments -I/usr/include/aarch64-linux-gnu/python3.10: YES 
+Check usable header "numpy/arrayobject.h" with dependency python3-embed: NO 
+Compiler for C++ supports arguments -I/usr/local/lib/python3.10/dist-packages/numpy/core/include: YES 
+Check usable header "numpy/arrayobject.h" with dependency python3-embed: NO 
+Compiler for C++ supports arguments -I/usr/lib/python3/dist-packages/numpy/core/include: YES 
+Check usable header "numpy/arrayobject.h" with dependency python3-embed: NO 
+Compiler for C++ supports arguments -I/usr/lib/python3.10/dist-packages/numpy/core/include: YES 
+Check usable header "numpy/arrayobject.h" with dependency python3-embed: NO 
+Compiler for C++ supports arguments -I/home/ubuntu/.local/lib/python3.10/site-packages/numpy/core/include: YES 
+Check usable header "numpy/arrayobject.h" with dependency python3-embed: YES 
+Program tools/dali-config.sh found: YES (/home/ubuntu/Desktop/test/nnstreamer/tools/dali-config.sh)
+Message: ERROR: tools/dali-config.sh exited with exit code: 1, dali-support will be disabled.
+Run-time dependency tensorflow found: NO (tried pkgconfig and cmake)
+Message: tf-support is off because it is either not available or disabled
+Run-time dependency tensorflow-lite found: NO (tried pkgconfig and cmake)
+Message: tflite-support is off because it is either not available or disabled
+Run-time dependency tensorflow2-lite found: NO (tried pkgconfig and cmake)
+Message: tflite2-support is off because it is either not available or disabled
+Run-time dependency pytorch found: NO (tried pkgconfig and cmake)
+Run-time dependency torch found: NO (tried pkgconfig and cmake)
+Message: pytorch-support is off because it is either not available or disabled
+Run-time dependency caffe2 found: NO (tried pkgconfig and cmake)
+Message: caffe2-support is off because it is either not available or disabled
+Message: deepview-rt-support is off because it is either not available or disabled
+Run-time dependency libmvnc found: NO (tried pkgconfig and cmake)
+Message: mvncsdk2-support is off because it is either not available or disabled
+Message: nnfw-runtime-support is off because it is either not available or disabled
+Message: armnn-support is off because it is either not available or disabled
+Message: snpe-support is off because it is either not available or disabled
+Run-time dependency qnn found: NO (tried pkgconfig and cmake)
+Message: qnn-support is off because it is either not available or disabled
+Message: tensorrt-support is off because it is either not available or disabled
+Message: tensorrt10-support is off because it is either not available or disabled
+Message: dali-support is off because it is either not available or disabled
+Message: grpc-support is off because it is either not available or disabled
+Run-time dependency lua found: NO (tried pkgconfig and cmake)
+Run-time dependency lua5.1 found: NO (tried pkgconfig and cmake)
+Message: lua-support is off because it is either not available or disabled
+Message: mqtt-support is off because it is either not available or disabled
+Run-time dependency tvm_runtime found: NO (tried pkgconfig and cmake)
+Message: tvm-support is off because it is either not available or disabled
+Run-time dependency npu-engine found: NO (tried pkgconfig and cmake)
+Message: trix-engine-support is off because it is either not available or disabled
+Run-time dependency nnstreamer-edge found: NO (tried pkgconfig and cmake)
+Message: nnstreamer-edge-support is off because it is either not available or disabled
+Message: mxnet-support is off because it is either not available or disabled
+Message: ncnn-support is off because it is either not available or disabled
+Run-time dependency executorch found: NO (tried pkgconfig and cmake)
+Message: executorch-support is off because it is either not available or disabled
+Message: datarepo-support is off because it is either not available or disabled
+Run-time dependency mlops-agent found: NO (tried pkgconfig and cmake)
+Message: ml-agent-support is off because it is either not available or disabled
+Run-time dependency libonnxruntime found: NO (tried pkgconfig and cmake)
+Message: onnxruntime-support is off because it is either not available or disabled
+Run-time dependency llama2c found: NO (tried pkgconfig and cmake)
+Message: llama2c-support is off because it is either not available or disabled
+Message: Following project_args are going to be included
+Message: {'HAVE_ORC' : 1, 'ENABLE_FLATBUF' : 1, 'ENABLE_PROTOBUF' : 1}
+Compiler for C supports arguments -Wredundant-decls: YES 
+Compiler for C++ supports arguments -Wredundant-decls: YES 
+Configuring nnstreamer.ini using configuration
+Configuring nnstreamer-single.pc using configuration
+Configuring nnstreamer.pc using configuration
+Configuring nnstreamer-internal.pc using configuration
+Has header "execinfo.h" : YES 
+Dependency gstreamer-1.0 found: YES 1.20.3 (cached)
+Message: tensor_src_iio enabled
+Header <android/log.h> has symbol "__android_log_print" : NO 
+Program ignore_warning.sh found: YES (/home/ubuntu/Desktop/test/nnstreamer/gst/nnstreamer/elements/ignore_warning.sh)
+Configuring nnstreamer_version.h using configuration
+Configuring nnstreamer-cpp.pc using configuration
+tools/development/parser/meson.build:3: WARNING: Project targeting '>=0.50.0' but tried to use feature introduced in '0.52.0': version arg in find_program.
+Program flex win_flex found: NO
+Configuring nnstreamer-test.ini using configuration
+Run-time dependency opencv found: NO (tried pkgconfig and cmake)
+Program cp found: YES (/usr/bin/cp)
+Run-time dependency libpng found: NO (tried pkgconfig and cmake)
+Run-time dependency GTest found: NO (tried pkgconfig and system)
+Build targets in project: 50
+WARNING: Project specifies a minimum meson_version '>=0.50.0' but uses features which were added in newer versions:
+ * 0.52.0: {'version arg in find_program'}
+NOTICE: Future-deprecated features used:
+ * 0.56.0: {'meson.source_root', 'meson.build_root'}
+
+nnstreamer 2.4.2
+
+  User defined options
+    backend: ninja
+
+Found ninja-1.10.1 at /usr/bin/ninja
+Generating targets:   0%|                                                 Generating targets:  48%|████████████████████▏                     | 24/50                                                                          Writing build.ninja:   0%|  
