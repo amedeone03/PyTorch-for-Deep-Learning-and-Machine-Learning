@@ -1,277 +1,56 @@
-export GST_PLUGIN_PATH=/usr/local/lib/gstreamer-1.0
-
-gst-inspect-1.0 | grep tensor
-
-cd ~/Desktop/test/nnstreamer
-meson setup --wipe build
-
-meson build
-ninja -C build
-sudo ninja -C build install
-
-gst-inspect-1.0 | grep tensor
-
-sudo apt-get install libgstreamer1.0-dev gstreamer1.0-plugins-base gstreamer1.0-tools
-
-ls /usr/local/lib/gstreamer-1.0
-ls /usr/lib/gstreamer-1.0
---------------------
-ubuntu@mtk-genio:~/Desktop/test/nnstreamer$ meson setup --wipe build
-The Meson build system
-Version: 0.61.2
-Source dir: /home/ubuntu/Desktop/test/nnstreamer
-Build dir: /home/ubuntu/Desktop/test/nnstreamer/build
-Build type: native build
-Project name: nnstreamer
-Project version: 2.4.2
-C compiler for the host machine: cc (gcc 11.4.0 "cc (Ubuntu 11.4.0-1ubuntu1~22.04) 11.4.0")
-C linker for the host machine: cc ld.bfd 2.38
-C++ compiler for the host machine: c++ (gcc 11.4.0 "c++ (Ubuntu 11.4.0-1ubuntu1~22.04) 11.4.0")
-C++ linker for the host machine: c++ ld.bfd 2.38
-Host machine cpu family: aarch64
-Host machine cpu: aarch64
-Compiler for C supports arguments -Wmissing-braces: YES 
-Compiler for C++ supports arguments -Wmissing-braces: YES 
-Compiler for C supports arguments -Wmaybe-uninitialized: YES 
-Compiler for C++ supports arguments -Wmaybe-uninitialized: YES 
-Compiler for C supports arguments -Wwrite-strings: YES 
-Compiler for C++ supports arguments -Wwrite-strings: YES 
-Compiler for C supports arguments -Wformat: YES 
-Compiler for C++ supports arguments -Wformat: YES 
-Compiler for C supports arguments -Wformat-nonliteral: YES 
-Compiler for C++ supports arguments -Wformat-nonliteral: YES 
-Compiler for C supports arguments -Wformat-security: YES 
-Compiler for C++ supports arguments -Wformat-security: YES 
-Compiler for C supports arguments -Winit-self: YES 
-Compiler for C++ supports arguments -Winit-self: YES 
-Compiler for C supports arguments -Waddress: YES 
-Compiler for C++ supports arguments -Waddress: YES 
-Compiler for C supports arguments -Wno-multichar: YES 
-Compiler for C++ supports arguments -Wno-multichar: YES 
-Compiler for C supports arguments -Wvla: YES 
-Compiler for C++ supports arguments -Wvla: YES 
-Compiler for C supports arguments -Wpointer-arith: YES 
-Compiler for C++ supports arguments -Wpointer-arith: YES 
-Compiler for C supports arguments -Wmissing-declarations: YES 
-Compiler for C supports arguments -Wmissing-include-dirs: YES 
-Compiler for C supports arguments -Wmissing-prototypes: YES 
-Compiler for C supports arguments -Wnested-externs: YES 
-Compiler for C supports arguments -Waggregate-return: YES 
-Compiler for C supports arguments -Wold-style-definition: YES 
-Compiler for C supports arguments -Wdeclaration-after-statement: YES 
-Found pkg-config: /usr/bin/pkg-config (0.29.2)
-Run-time dependency glib-2.0 found: YES 2.72.4
-Run-time dependency gobject-2.0 found: YES 2.72.4
-Run-time dependency gmodule-2.0 found: YES 2.72.4
-Run-time dependency gio-2.0 found: YES 2.72.4
-Run-time dependency gstreamer-1.0 found: YES 1.20.3
-Run-time dependency gstreamer-base-1.0 found: YES 1.20.3
-Run-time dependency gstreamer-controller-1.0 found: YES 1.20.3
-Run-time dependency gstreamer-video-1.0 found: YES 1.20.1
-Run-time dependency gstreamer-audio-1.0 found: YES 1.20.1
-Run-time dependency gstreamer-app-1.0 found: YES 1.20.1
-Run-time dependency gstreamer-check-1.0 found: YES 1.20.3
-Library m found: YES
-Library dl found: YES
-Run-time dependency threads found: YES
-Run-time dependency protobuf found: YES 3.12.4
-Program flatc found: YES (/usr/local/bin/flatc)
-Run-time dependency flatbuffers found: YES 24.3.25
-Dependency flatbuffers found: YES 24.3.25 (cached)
-Program protoc found: YES (/usr/bin/protoc)
-Program orcc found: YES (/usr/bin/orcc)
-Run-time dependency orc-0.4 found: YES 0.4.32
-Found CMake: /usr/bin/cmake (3.22.1)
-Run-time dependency nnfw found: NO (tried pkgconfig and cmake)
-Library nnfw-dev found: NO
-Run-time dependency snpe found: NO (tried pkgconfig and cmake)
-Message: Not supported system & architecture. Linux x86_64 is required for SNPE sub-plugin.
-Program nvcc found: YES (/usr/bin/nvcc)
-Program tools/cuda-version.sh found: YES (/home/ubuntu/Desktop/test/nnstreamer/tools/cuda-version.sh)
-Message: cuda_version_str: 11.5
-Run-time dependency cuda-11.5 found: NO (tried pkgconfig and cmake)
-Run-time dependency cudart-11.5 found: NO (tried pkgconfig and cmake)
-Program tools/tensorrt-version.sh found: YES (/home/ubuntu/Desktop/test/nnstreamer/tools/tensorrt-version.sh)
-Message: ERROR: tools/tensorrt-version.sh exited with exit code: 1, tensorrt10-support will be disabled.
-Run-time dependency grpc found: NO (tried pkgconfig and cmake)
-Run-time dependency gpr found: NO (tried pkgconfig and cmake)
-Run-time dependency grpc++ found: NO (tried pkgconfig and cmake)
-Run-time dependency paho-mqtt-c found: NO (tried pkgconfig and cmake)
-Run-time dependency deepview-rt found: NO (tried pkgconfig and cmake)
-Library deepview-rt found: NO
-Run-time dependency armnn found: NO (tried pkgconfig and cmake)
-Run-time dependency armnn found: NO (tried pkgconfig and cmake)
-Library armnn found: NO
-Library mxnet found: NO
-Check usable header "mxnet-cpp/MxNetCpp.h" : NO 
-Run-time dependency ncnn found: NO (tried pkgconfig and cmake)
-Library ncnn found: NO
-Run-time dependency json-glib-1.0 found: NO (tried pkgconfig and cmake)
-Message: datarepo-support is off because json-glib-1.0 is not available.
-Run-time dependency python3 found: YES 3.10
-Run-time dependency python3-embed found: YES 3.10
-Program pkg-config found: YES (/usr/bin/pkg-config)
-Compiler for C++ supports arguments -I/usr/include/python3.10: YES 
-Check usable header "numpy/arrayobject.h" with dependency python3-embed: NO 
-Compiler for C++ supports arguments -I/usr/include/aarch64-linux-gnu/python3.10: YES 
-Check usable header "numpy/arrayobject.h" with dependency python3-embed: NO 
-Compiler for C++ supports arguments -I/usr/local/lib/python3.10/dist-packages/numpy/core/include: YES 
-Check usable header "numpy/arrayobject.h" with dependency python3-embed: NO 
-Compiler for C++ supports arguments -I/usr/lib/python3/dist-packages/numpy/core/include: YES 
-Check usable header "numpy/arrayobject.h" with dependency python3-embed: NO 
-Compiler for C++ supports arguments -I/usr/lib/python3.10/dist-packages/numpy/core/include: YES 
-Check usable header "numpy/arrayobject.h" with dependency python3-embed: NO 
-Compiler for C++ supports arguments -I/home/ubuntu/.local/lib/python3.10/site-packages/numpy/core/include: YES 
-Check usable header "numpy/arrayobject.h" with dependency python3-embed: YES 
-Program tools/dali-config.sh found: YES (/home/ubuntu/Desktop/test/nnstreamer/tools/dali-config.sh)
-Message: ERROR: tools/dali-config.sh exited with exit code: 1, dali-support will be disabled.
-Run-time dependency tensorflow found: NO (tried pkgconfig and cmake)
-Message: tf-support is off because it is either not available or disabled
-Run-time dependency tensorflow-lite found: NO (tried pkgconfig and cmake)
-Message: tflite-support is off because it is either not available or disabled
-Run-time dependency tensorflow2-lite found: NO (tried pkgconfig and cmake)
-Message: tflite2-support is off because it is either not available or disabled
-Run-time dependency pytorch found: NO (tried pkgconfig and cmake)
-Run-time dependency torch found: NO (tried pkgconfig and cmake)
-Message: pytorch-support is off because it is either not available or disabled
-Run-time dependency caffe2 found: NO (tried pkgconfig and cmake)
-Message: caffe2-support is off because it is either not available or disabled
-Message: deepview-rt-support is off because it is either not available or disabled
-Run-time dependency libmvnc found: NO (tried pkgconfig and cmake)
-Message: mvncsdk2-support is off because it is either not available or disabled
-Message: nnfw-runtime-support is off because it is either not available or disabled
-Message: armnn-support is off because it is either not available or disabled
-Message: snpe-support is off because it is either not available or disabled
-Run-time dependency qnn found: NO (tried pkgconfig and cmake)
-Message: qnn-support is off because it is either not available or disabled
-Message: tensorrt-support is off because it is either not available or disabled
-Message: tensorrt10-support is off because it is either not available or disabled
-Message: dali-support is off because it is either not available or disabled
-Message: grpc-support is off because it is either not available or disabled
-Run-time dependency lua found: NO (tried pkgconfig and cmake)
-Run-time dependency lua5.1 found: NO (tried pkgconfig and cmake)
-Message: lua-support is off because it is either not available or disabled
-Message: mqtt-support is off because it is either not available or disabled
-Run-time dependency tvm_runtime found: NO (tried pkgconfig and cmake)
-Message: tvm-support is off because it is either not available or disabled
-Run-time dependency npu-engine found: NO (tried pkgconfig and cmake)
-Message: trix-engine-support is off because it is either not available or disabled
-Run-time dependency nnstreamer-edge found: NO (tried pkgconfig and cmake)
-Message: nnstreamer-edge-support is off because it is either not available or disabled
-Message: mxnet-support is off because it is either not available or disabled
-Message: ncnn-support is off because it is either not available or disabled
-Run-time dependency executorch found: NO (tried pkgconfig and cmake)
-Message: executorch-support is off because it is either not available or disabled
-Message: datarepo-support is off because it is either not available or disabled
-Run-time dependency mlops-agent found: NO (tried pkgconfig and cmake)
-Message: ml-agent-support is off because it is either not available or disabled
-Run-time dependency libonnxruntime found: NO (tried pkgconfig and cmake)
-Message: onnxruntime-support is off because it is either not available or disabled
-Run-time dependency llama2c found: NO (tried pkgconfig and cmake)
-Message: llama2c-support is off because it is either not available or disabled
-Message: Following project_args are going to be included
-Message: {'HAVE_ORC' : 1, 'ENABLE_FLATBUF' : 1, 'ENABLE_PROTOBUF' : 1}
-Compiler for C supports arguments -Wredundant-decls: YES 
-Compiler for C++ supports arguments -Wredundant-decls: YES 
-Configuring nnstreamer.ini using configuration
-Configuring nnstreamer-single.pc using configuration
-Configuring nnstreamer.pc using configuration
-Configuring nnstreamer-internal.pc using configuration
-Has header "execinfo.h" : YES 
-Dependency gstreamer-1.0 found: YES 1.20.3 (cached)
-Message: tensor_src_iio enabled
-Header <android/log.h> has symbol "__android_log_print" : NO 
-Program ignore_warning.sh found: YES (/home/ubuntu/Desktop/test/nnstreamer/gst/nnstreamer/elements/ignore_warning.sh)
-Configuring nnstreamer_version.h using configuration
-Configuring nnstreamer-cpp.pc using configuration
-tools/development/parser/meson.build:3: WARNING: Project targeting '>=0.50.0' but tried to use feature introduced in '0.52.0': version arg in find_program.
-Program flex win_flex found: NO
-Configuring nnstreamer-test.ini using configuration
-Run-time dependency opencv found: NO (tried pkgconfig and cmake)
-Program cp found: YES (/usr/bin/cp)
-Run-time dependency libpng found: NO (tried pkgconfig and cmake)
-Run-time dependency GTest found: NO (tried pkgconfig and system)
-Build targets in project: 50
-WARNING: Project specifies a minimum meson_version '>=0.50.0' but uses features which were added in newer versions:
- * 0.52.0: {'version arg in find_program'}
-NOTICE: Future-deprecated features used:
- * 0.56.0: {'meson.source_root', 'meson.build_root'}
-
-nnstreamer 2.4.2
-
-  User defined options
-    backend: ninja
-
-Found ninja-1.10.1 at /usr/bin/ninja
-Generating targets:   0%|                                                 Generating targets:  48%|████████████████████▏                     | 24/50                                                                          Writing build.ninja:   0%|  
-----------------------------------------------
-
-
-
-ubuntu@mtk-genio:~/Desktop/test/nnstreamer$ ninja -C build
+ubuntu@mtk-genio:~/Desktop/test/nnstreamer$ sudo ninja -C build install
 ninja: Entering directory `build'
-[1/197] Generating gst/nnstreamer/e...treamer-orc.h with a custom command
-FAILED: gst/nnstreamer/elements/nnstreamer-orc.h 
-/usr/bin/orcc --include glib.h --header -o gst/nnstreamer/elements/nnstreamer-orc.h ../gst/nnstreamer/elements/nnstreamer-orc.orc
-Could not write output file: gst/nnstreamer/elements/nnstreamer-orc.h
-[2/197] Generating gst/nnstreamer/e...amer-orc.c.in with a custom command
-FAILED: gst/nnstreamer/elements/nnstreamer-orc.c.in 
-/usr/bin/orcc --include glib.h --implementation -o gst/nnstreamer/elements/nnstreamer-orc.c.in ../gst/nnstreamer/elements/nnstreamer-orc.orc
-Could not write output file: gst/nnstreamer/elements/nnstreamer-orc.c.in
-[3/197] Compiling C object gst/nnst...mer-single.so.p/nnstreamer_conf.c.o
-FAILED: gst/nnstreamer/libnnstreamer-single.so.p/nnstreamer_conf.c.o 
-cc -Igst/nnstreamer/libnnstreamer-single.so.p -Igst/nnstreamer -I../gst/nnstreamer -Igst/nnstreamer/include -I../gst/nnstreamer/include -I/usr/include/glib-2.0 -I/usr/lib/aarch64-linux-gnu/glib-2.0/include -fdiagnostics-color=always -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -Wextra -Werror -std=gnu89 -g '-DVERSION="2.4.2"' '-DVERSION_MAJOR="2"' '-DVERSION_MINOR="4"' '-DVERSION_MICRO="2"' -Wmissing-braces -Wmaybe-uninitialized -Wwrite-strings -Wformat -Wformat-nonliteral -Wformat-security -Winit-self -Waddress -Wno-multichar -Wvla -Wpointer-arith -Wmissing-declarations -Wmissing-include-dirs -Wmissing-prototypes -Wnested-externs -Waggregate-return -Wold-style-definition -Wdeclaration-after-statement '-DNNSTREAMER_CONF_FILE="/usr/local/etc/nnstreamer.ini"' -DGLIB_USE_G_MEMDUP2 -DHAVE_ORC=1 -DENABLE_FLATBUF=1 -DENABLE_PROTOBUF=1 -Wredundant-decls -D_ENABLE_SRC_IIO -fPIC -pthread -MD -MQ gst/nnstreamer/libnnstreamer-single.so.p/nnstreamer_conf.c.o -MF gst/nnstreamer/libnnstreamer-single.so.p/nnstreamer_conf.c.o.d -o gst/nnstreamer/libnnstreamer-single.so.p/nnstreamer_conf.c.o -c ../gst/nnstreamer/nnstreamer_conf.c
-../gst/nnstreamer/nnstreamer_conf.c:752:1: fatal error: opening dependency file gst/nnstreamer/libnnstreamer-single.so.p/nnstreamer_conf.c.o.d: Permission denied
-  752 | }
-      | ^
-compilation terminated.
-[4/197] Compiling C object gst/nnst...nnstreamer-single.so.p/hw_accel.c.o
-FAILED: gst/nnstreamer/libnnstreamer-single.so.p/hw_accel.c.o 
-cc -Igst/nnstreamer/libnnstreamer-single.so.p -Igst/nnstreamer -I../gst/nnstreamer -Igst/nnstreamer/include -I../gst/nnstreamer/include -I/usr/include/glib-2.0 -I/usr/lib/aarch64-linux-gnu/glib-2.0/include -fdiagnostics-color=always -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -Wextra -Werror -std=gnu89 -g '-DVERSION="2.4.2"' '-DVERSION_MAJOR="2"' '-DVERSION_MINOR="4"' '-DVERSION_MICRO="2"' -Wmissing-braces -Wmaybe-uninitialized -Wwrite-strings -Wformat -Wformat-nonliteral -Wformat-security -Winit-self -Waddress -Wno-multichar -Wvla -Wpointer-arith -Wmissing-declarations -Wmissing-include-dirs -Wmissing-prototypes -Wnested-externs -Waggregate-return -Wold-style-definition -Wdeclaration-after-statement '-DNNSTREAMER_CONF_FILE="/usr/local/etc/nnstreamer.ini"' -DGLIB_USE_G_MEMDUP2 -DHAVE_ORC=1 -DENABLE_FLATBUF=1 -DENABLE_PROTOBUF=1 -Wredundant-decls -D_ENABLE_SRC_IIO -fPIC -pthread -MD -MQ gst/nnstreamer/libnnstreamer-single.so.p/hw_accel.c.o -MF gst/nnstreamer/libnnstreamer-single.so.p/hw_accel.c.o.d -o gst/nnstreamer/libnnstreamer-single.so.p/hw_accel.c.o -c ../gst/nnstreamer/hw_accel.c
-../gst/nnstreamer/hw_accel.c:62:1: fatal error: opening dependency file gst/nnstreamer/libnnstreamer-single.so.p/hw_accel.c.o.d: Permission denied
-   62 | }
-      | ^
-compilation terminated.
-[5/197] Compiling C object gst/join/libgstjoin.so.p/gstjoin.c.o
-FAILED: gst/join/libgstjoin.so.p/gstjoin.c.o 
-cc -Igst/join/libgstjoin.so.p -Igst/join -I../gst/join -I/usr/include/glib-2.0 -I/usr/lib/aarch64-linux-gnu/glib-2.0/include -I/usr/include/gstreamer-1.0 -I/usr/include/aarch64-linux-gnu -fdiagnostics-color=always -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -Wextra -Werror -std=gnu89 -g '-DVERSION="2.4.2"' '-DVERSION_MAJOR="2"' '-DVERSION_MINOR="4"' '-DVERSION_MICRO="2"' -Wmissing-braces -Wmaybe-uninitialized -Wwrite-strings -Wformat -Wformat-nonliteral -Wformat-security -Winit-self -Waddress -Wno-multichar -Wvla -Wpointer-arith -Wmissing-declarations -Wmissing-include-dirs -Wmissing-prototypes -Wnested-externs -Waggregate-return -Wold-style-definition -Wdeclaration-after-statement '-DNNSTREAMER_CONF_FILE="/usr/local/etc/nnstreamer.ini"' -DGLIB_USE_G_MEMDUP2 -DHAVE_ORC=1 -DENABLE_FLATBUF=1 -DENABLE_PROTOBUF=1 -Wredundant-decls -D_ENABLE_SRC_IIO -fPIC -pthread -MD -MQ gst/join/libgstjoin.so.p/gstjoin.c.o -MF gst/join/libgstjoin.so.p/gstjoin.c.o.d -o gst/join/libgstjoin.so.p/gstjoin.c.o -c ../gst/join/gstjoin.c
-../gst/join/gstjoin.c:704:1: fatal error: opening dependency file gst/join/libgstjoin.so.p/gstjoin.c.o.d: Permission denied
-  704 | GST_PLUGIN_DEFINE (GST_VERSION_MAJOR,
-      | ^~~~~~~~~~~~~~~~~
-compilation terminated.
-[6/197] Compiling C object gst/nnst...amer-single.so.p/nnstreamer_log.c.o
-FAILED: gst/nnstreamer/libnnstreamer-single.so.p/nnstreamer_log.c.o 
-cc -Igst/nnstreamer/libnnstreamer-single.so.p -Igst/nnstreamer -I../gst/nnstreamer -Igst/nnstreamer/include -I../gst/nnstreamer/include -I/usr/include/glib-2.0 -I/usr/lib/aarch64-linux-gnu/glib-2.0/include -fdiagnostics-color=always -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -Wextra -Werror -std=gnu89 -g '-DVERSION="2.4.2"' '-DVERSION_MAJOR="2"' '-DVERSION_MINOR="4"' '-DVERSION_MICRO="2"' -Wmissing-braces -Wmaybe-uninitialized -Wwrite-strings -Wformat -Wformat-nonliteral -Wformat-security -Winit-self -Waddress -Wno-multichar -Wvla -Wpointer-arith -Wmissing-declarations -Wmissing-include-dirs -Wmissing-prototypes -Wnested-externs -Waggregate-return -Wold-style-definition -Wdeclaration-after-statement '-DNNSTREAMER_CONF_FILE="/usr/local/etc/nnstreamer.ini"' -DGLIB_USE_G_MEMDUP2 -DHAVE_ORC=1 -DENABLE_FLATBUF=1 -DENABLE_PROTOBUF=1 -Wredundant-decls -D_ENABLE_SRC_IIO -fPIC -pthread -MD -MQ gst/nnstreamer/libnnstreamer-single.so.p/nnstreamer_log.c.o -MF gst/nnstreamer/libnnstreamer-single.so.p/nnstreamer_log.c.o.d -o gst/nnstreamer/libnnstreamer-single.so.p/nnstreamer_log.c.o -c ../gst/nnstreamer/nnstreamer_log.c
-../gst/nnstreamer/nnstreamer_log.c:127:1: fatal error: opening dependency file gst/nnstreamer/libnnstreamer-single.so.p/nnstreamer_log.c.o.d: Permission denied
-  127 | }
-      | ^
-compilation terminated.
-[7/197] Compiling C object gst/join/libgstjoin.a.p/gstjoin.c.o
-FAILED: gst/join/libgstjoin.a.p/gstjoin.c.o 
-cc -Igst/join/libgstjoin.a.p -Igst/join -I../gst/join -I/usr/include/glib-2.0 -I/usr/lib/aarch64-linux-gnu/glib-2.0/include -I/usr/include/gstreamer-1.0 -I/usr/include/aarch64-linux-gnu -fdiagnostics-color=always -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -Wextra -Werror -std=gnu89 -g '-DVERSION="2.4.2"' '-DVERSION_MAJOR="2"' '-DVERSION_MINOR="4"' '-DVERSION_MICRO="2"' -Wmissing-braces -Wmaybe-uninitialized -Wwrite-strings -Wformat -Wformat-nonliteral -Wformat-security -Winit-self -Waddress -Wno-multichar -Wvla -Wpointer-arith -Wmissing-declarations -Wmissing-include-dirs -Wmissing-prototypes -Wnested-externs -Waggregate-return -Wold-style-definition -Wdeclaration-after-statement '-DNNSTREAMER_CONF_FILE="/usr/local/etc/nnstreamer.ini"' -DGLIB_USE_G_MEMDUP2 -DHAVE_ORC=1 -DENABLE_FLATBUF=1 -DENABLE_PROTOBUF=1 -Wredundant-decls -D_ENABLE_SRC_IIO -fPIC -pthread -MD -MQ gst/join/libgstjoin.a.p/gstjoin.c.o -MF gst/join/libgstjoin.a.p/gstjoin.c.o.d -o gst/join/libgstjoin.a.p/gstjoin.c.o -c ../gst/join/gstjoin.c
-../gst/join/gstjoin.c:704:1: fatal error: opening dependency file gst/join/libgstjoin.a.p/gstjoin.c.o.d: Permission denied
-  704 | GST_PLUGIN_DEFINE (GST_VERSION_MAJOR,
-      | ^~~~~~~~~~~~~~~~~
-compilation terminated.
-[8/197] Compiling C object gst/nnst...ingle.so.p/nnstreamer_subplugin.c.o
-FAILED: gst/nnstreamer/libnnstreamer-single.so.p/nnstreamer_subplugin.c.o 
-cc -Igst/nnstreamer/libnnstreamer-single.so.p -Igst/nnstreamer -I../gst/nnstreamer -Igst/nnstreamer/include -I../gst/nnstreamer/include -I/usr/include/glib-2.0 -I/usr/lib/aarch64-linux-gnu/glib-2.0/include -fdiagnostics-color=always -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -Wextra -Werror -std=gnu89 -g '-DVERSION="2.4.2"' '-DVERSION_MAJOR="2"' '-DVERSION_MINOR="4"' '-DVERSION_MICRO="2"' -Wmissing-braces -Wmaybe-uninitialized -Wwrite-strings -Wformat -Wformat-nonliteral -Wformat-security -Winit-self -Waddress -Wno-multichar -Wvla -Wpointer-arith -Wmissing-declarations -Wmissing-include-dirs -Wmissing-prototypes -Wnested-externs -Waggregate-return -Wold-style-definition -Wdeclaration-after-statement '-DNNSTREAMER_CONF_FILE="/usr/local/etc/nnstreamer.ini"' -DGLIB_USE_G_MEMDUP2 -DHAVE_ORC=1 -DENABLE_FLATBUF=1 -DENABLE_PROTOBUF=1 -Wredundant-decls -D_ENABLE_SRC_IIO -fPIC -pthread -MD -MQ gst/nnstreamer/libnnstreamer-single.so.p/nnstreamer_subplugin.c.o -MF gst/nnstreamer/libnnstreamer-single.so.p/nnstreamer_subplugin.c.o.d -o gst/nnstreamer/libnnstreamer-single.so.p/nnstreamer_subplugin.c.o -c ../gst/nnstreamer/nnstreamer_subplugin.c
-../gst/nnstreamer/nnstreamer_subplugin.c:394:1: fatal error: opening dependency file gst/nnstreamer/libnnstreamer-single.so.p/nnstreamer_subplugin.c.o.d: Permission denied
-  394 | }
-      | ^
-compilation terminated.
-[9/197] Compiling C object gst/nnst...nnstreamer_plugin_api_util_impl.c.o
-FAILED: gst/nnstreamer/libnnstreamer-single.so.p/nnstreamer_plugin_api_util_impl.c.o 
-cc -Igst/nnstreamer/libnnstreamer-single.so.p -Igst/nnstreamer -I../gst/nnstreamer -Igst/nnstreamer/include -I../gst/nnstreamer/include -I/usr/include/glib-2.0 -I/usr/lib/aarch64-linux-gnu/glib-2.0/include -fdiagnostics-color=always -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -Wextra -Werror -std=gnu89 -g '-DVERSION="2.4.2"' '-DVERSION_MAJOR="2"' '-DVERSION_MINOR="4"' '-DVERSION_MICRO="2"' -Wmissing-braces -Wmaybe-uninitialized -Wwrite-strings -Wformat -Wformat-nonliteral -Wformat-security -Winit-self -Waddress -Wno-multichar -Wvla -Wpointer-arith -Wmissing-declarations -Wmissing-include-dirs -Wmissing-prototypes -Wnested-externs -Waggregate-return -Wold-style-definition -Wdeclaration-after-statement '-DNNSTREAMER_CONF_FILE="/usr/local/etc/nnstreamer.ini"' -DGLIB_USE_G_MEMDUP2 -DHAVE_ORC=1 -DENABLE_FLATBUF=1 -DENABLE_PROTOBUF=1 -Wredundant-decls -D_ENABLE_SRC_IIO -fPIC -pthread -MD -MQ gst/nnstreamer/libnnstreamer-single.so.p/nnstreamer_plugin_api_util_impl.c.o -MF gst/nnstreamer/libnnstreamer-single.so.p/nnstreamer_plugin_api_util_impl.c.o.d -o gst/nnstreamer/libnnstreamer-single.so.p/nnstreamer_plugin_api_util_impl.c.o -c ../gst/nnstreamer/nnstreamer_plugin_api_util_impl.c
-../gst/nnstreamer/nnstreamer_plugin_api_util_impl.c:1623:1: fatal error: opening dependency file gst/nnstreamer/libnnstreamer-single.so.p/nnstreamer_plugin_api_util_impl.c.o.d: Permission denied
- 1623 | }
-      | ^
-compilation terminated.
-[10/197] Compiling C object gst/nns...sor_filter_tensor_filter_single.c.o
-FAILED: gst/nnstreamer/libnnstreamer-single.so.p/tensor_filter_tensor_filter_single.c.o 
-cc -Igst/nnstreamer/libnnstreamer-single.so.p -Igst/nnstreamer -I../gst/nnstreamer -Igst/nnstreamer/include -I../gst/nnstreamer/include -I/usr/include/glib-2.0 -I/usr/lib/aarch64-linux-gnu/glib-2.0/include -fdiagnostics-color=always -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -Wextra -Werror -std=gnu89 -g '-DVERSION="2.4.2"' '-DVERSION_MAJOR="2"' '-DVERSION_MINOR="4"' '-DVERSION_MICRO="2"' -Wmissing-braces -Wmaybe-uninitialized -Wwrite-strings -Wformat -Wformat-nonliteral -Wformat-security -Winit-self -Waddress -Wno-multichar -Wvla -Wpointer-arith -Wmissing-declarations -Wmissing-include-dirs -Wmissing-prototypes -Wnested-externs -Waggregate-return -Wold-style-definition -Wdeclaration-after-statement '-DNNSTREAMER_CONF_FILE="/usr/local/etc/nnstreamer.ini"' -DGLIB_USE_G_MEMDUP2 -DHAVE_ORC=1 -DENABLE_FLATBUF=1 -DENABLE_PROTOBUF=1 -Wredundant-decls -D_ENABLE_SRC_IIO -fPIC -pthread -MD -MQ gst/nnstreamer/libnnstreamer-single.so.p/tensor_filter_tensor_filter_single.c.o -MF gst/nnstreamer/libnnstreamer-single.so.p/tensor_filter_tensor_filter_single.c.o.d -o gst/nnstreamer/libnnstreamer-single.so.p/tensor_filter_tensor_filter_single.c.o -c ../gst/nnstreamer/tensor_filter/tensor_filter_single.c
-../gst/nnstreamer/tensor_filter/tensor_filter_single.c:435:1: fatal error: opening dependency file gst/nnstreamer/libnnstreamer-single.so.p/tensor_filter_tensor_filter_single.c.o.d: Permission denied
-  435 | }
-      | ^
-compilation terminated.
-ninja: build stopped: subcommand failed.
+[0/1] Installing files.
+Installing gst/join/libgstjoin.so to /usr/local/lib/aarch64-linux-gnu/gstreamer-1.0
+Installing gst/join/libgstjoin.a to /usr/local/lib/aarch64-linux-gnu
+Installing gst/nnstreamer/libnnstreamer-single.so to /usr/local/lib/aarch64-linux-gnu
+Installing gst/nnstreamer/libnnstreamer-single.a to /usr/local/lib/aarch64-linux-gnu
+Installing gst/nnstreamer/libnnstreamer.so to /usr/local/lib/aarch64-linux-gnu/gstreamer-1.0
+Installing gst/nnstreamer/libnnstreamer.a to /usr/local/lib/aarch64-linux-gnu
+Installing ext/nnstreamer/extra/libnnstreamer_protobuf.so to /usr/local/lib/aarch64-linux-gnu
+Installing ext/nnstreamer/tensor_decoder/libnnstreamer_decoder_direct_video.so to /usr/local/lib/aarch64-linux-gnu/nnstreamer/decoders
+Installing ext/nnstreamer/tensor_decoder/libnnstreamer_decoder_direct_video.a to /usr/local/lib/aarch64-linux-gnu
+Installing ext/nnstreamer/tensor_decoder/libnnstreamer_decoder_image_labeling.so to /usr/local/lib/aarch64-linux-gnu/nnstreamer/decoders
+Installing ext/nnstreamer/tensor_decoder/libnnstreamer_decoder_image_labeling.a to /usr/local/lib/aarch64-linux-gnu
+Installing ext/nnstreamer/tensor_decoder/libnnstreamer_decoder_bounding_boxes.so to /usr/local/lib/aarch64-linux-gnu/nnstreamer/decoders
+Installing ext/nnstreamer/tensor_decoder/libnnstreamer_decoder_bounding_boxes.a to /usr/local/lib/aarch64-linux-gnu
+Installing ext/nnstreamer/tensor_decoder/libnnstreamer_decoder_tensor_region.so to /usr/local/lib/aarch64-linux-gnu/nnstreamer/decoders
+Installing ext/nnstreamer/tensor_decoder/libnnstreamer_decoder_tensor_region.a to /usr/local/lib/aarch64-linux-gnu
+Installing ext/nnstreamer/tensor_decoder/libnnstreamer_decoder_pose_estimation.so to /usr/local/lib/aarch64-linux-gnu/nnstreamer/decoders
+Installing ext/nnstreamer/tensor_decoder/libnnstreamer_decoder_pose_estimation.a to /usr/local/lib/aarch64-linux-gnu
+Installing ext/nnstreamer/tensor_decoder/libnnstreamer_decoder_image_segment.so to /usr/local/lib/aarch64-linux-gnu/nnstreamer/decoders
+Installing ext/nnstreamer/tensor_decoder/libnnstreamer_decoder_image_segment.a to /usr/local/lib/aarch64-linux-gnu
+Installing ext/nnstreamer/tensor_decoder/libnnstreamer_decoder_protobuf.so to /usr/local/lib/aarch64-linux-gnu/nnstreamer/decoders
+Installing ext/nnstreamer/tensor_decoder/libnnstreamer_decoder_flatbuf.so to /usr/local/lib/aarch64-linux-gnu/nnstreamer/decoders
+Installing ext/nnstreamer/tensor_decoder/libnnstreamer_decoder_flexbuf.so to /usr/local/lib/aarch64-linux-gnu/nnstreamer/decoders
+Installing ext/nnstreamer/tensor_decoder/libnnstreamer_decoder_octet_stream.so to /usr/local/lib/aarch64-linux-gnu/nnstreamer/decoders
+Installing ext/nnstreamer/tensor_decoder/libnnstreamer_decoder_octet_stream.a to /usr/local/lib/aarch64-linux-gnu
+Installing ext/nnstreamer/tensor_filter/libnnstreamer_filter_cpp.so to /usr/local/lib/aarch64-linux-gnu/nnstreamer/filters
+Installing ext/nnstreamer/tensor_converter/libnnstreamer_converter_flatbuf.so to /usr/local/lib/aarch64-linux-gnu/nnstreamer/converters
+Installing ext/nnstreamer/tensor_converter/libnnstreamer_converter_flexbuf.so to /usr/local/lib/aarch64-linux-gnu/nnstreamer/converters
+Installing ext/nnstreamer/tensor_converter/libnnstreamer_converter_protobuf.so to /usr/local/lib/aarch64-linux-gnu/nnstreamer/converters
+Installing tools/development/confchk/nnstreamer-check to /usr/local/bin
+Installing /home/ubuntu/Desktop/test/nnstreamer/gst/nnstreamer/tensor_filter/tensor_filter_single.h to /usr/local/include/nnstreamer
+Installing /home/ubuntu/Desktop/test/nnstreamer/gst/nnstreamer/include/tensor_if.h to /usr/local/include/nnstreamer
+Installing /home/ubuntu/Desktop/test/nnstreamer/gst/nnstreamer/include/tensor_typedef.h to /usr/local/include/nnstreamer
+Installing /home/ubuntu/Desktop/test/nnstreamer/gst/nnstreamer/include/tensor_filter_custom.h to /usr/local/include/nnstreamer
+Installing /home/ubuntu/Desktop/test/nnstreamer/gst/nnstreamer/include/tensor_filter_custom_easy.h to /usr/local/include/nnstreamer
+Installing /home/ubuntu/Desktop/test/nnstreamer/gst/nnstreamer/include/tensor_converter_custom.h to /usr/local/include/nnstreamer
+Installing /home/ubuntu/Desktop/test/nnstreamer/gst/nnstreamer/include/tensor_decoder_custom.h to /usr/local/include/nnstreamer
+Installing /home/ubuntu/Desktop/test/nnstreamer/gst/nnstreamer/include/nnstreamer_plugin_api_filter.h to /usr/local/include/nnstreamer
+Installing /home/ubuntu/Desktop/test/nnstreamer/gst/nnstreamer/include/nnstreamer_plugin_api_trainer.h to /usr/local/include/nnstreamer
+Installing /home/ubuntu/Desktop/test/nnstreamer/gst/nnstreamer/include/nnstreamer_plugin_api_decoder.h to /usr/local/include/nnstreamer
+Installing /home/ubuntu/Desktop/test/nnstreamer/gst/nnstreamer/include/nnstreamer_plugin_api_converter.h to /usr/local/include/nnstreamer
+Installing /home/ubuntu/Desktop/test/nnstreamer/gst/nnstreamer/include/nnstreamer_plugin_api_util.h to /usr/local/include/nnstreamer
+Installing /home/ubuntu/Desktop/test/nnstreamer/gst/nnstreamer/include/nnstreamer_plugin_api.h to /usr/local/include/nnstreamer
+Installing /home/ubuntu/Desktop/test/nnstreamer/gst/nnstreamer/include/nnstreamer_util.h to /usr/local/include/nnstreamer
+Installing /home/ubuntu/Desktop/test/nnstreamer/gst/nnstreamer/include/nnstreamer_cppplugin_api_filter.hh to /usr/local/include/nnstreamer
+Installing /home/ubuntu/Desktop/test/nnstreamer/build/gst/nnstreamer/include/nnstreamer_version.h to /usr/local/include/nnstreamer
+Installing /home/ubuntu/Desktop/test/nnstreamer/gst/nnstreamer/nnstreamer_internal.h to /usr/local/include/nnstreamer
+Installing /home/ubuntu/Desktop/test/nnstreamer/ext/nnstreamer/tensor_filter/tensor_filter_cpp.hh to /usr/local/include/nnstreamer
+Installing /home/ubuntu/Desktop/test/nnstreamer/build/nnstreamer.ini to /usr/local/etc
+Installing /home/ubuntu/Desktop/test/nnstreamer/build/nnstreamer-single.pc to /usr/local/lib/aarch64-linux-gnu/pkgconfig
+Installing /home/ubuntu/Desktop/test/nnstreamer/build/nnstreamer.pc to /usr/local/lib/aarch64-linux-gnu/pkgconfig
+Installing /home/ubuntu/Desktop/test/nnstreamer/build/nnstreamer-internal.pc to /usr/local/lib/aarch64-linux-gnu/pkgconfig
+Installing /home/ubuntu/Desktop/test/nnstreamer/build/ext/nnstreamer/tensor_filter/nnstreamer-cpp.pc to /usr/local/lib/aarch64-linux-gnu/pkgconfig
+Running custom install script '/usr/bin/sh -c ln -fs /usr/local/lib/aarch64-linux-gnu/gstreamer-1.0/libnnstreamer.so ${DESTDIR}/usr/local/lib/aarch64-linux-gnu/libnnstreamer.so'
