@@ -1,0 +1,13 @@
+sudo apt-get update
+sudo apt-get install git meson ninja-build cmake gstreamer1.0-tools gstreamer1.0-plugins-base gstreamer1.0-plugins-good
+
+git clone https://github.com/nnstreamer/nnstreamer.git
+cd nnstreamer
+
+meson build
+
+ninja -C build
+
+sudo ninja -C build install
+
+gst-inspect-1.0 | grep nnstreamer
