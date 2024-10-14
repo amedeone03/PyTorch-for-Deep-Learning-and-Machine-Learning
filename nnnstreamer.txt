@@ -204,3 +204,74 @@ nnstreamer 2.4.2
 
 Found ninja-1.10.1 at /usr/bin/ninja
 Generating targets:   0%|                                                 Generating targets:  48%|████████████████████▏                     | 24/50                                                                          Writing build.ninja:   0%|  
+----------------------------------------------
+
+
+
+ubuntu@mtk-genio:~/Desktop/test/nnstreamer$ ninja -C build
+ninja: Entering directory `build'
+[1/197] Generating gst/nnstreamer/e...treamer-orc.h with a custom command
+FAILED: gst/nnstreamer/elements/nnstreamer-orc.h 
+/usr/bin/orcc --include glib.h --header -o gst/nnstreamer/elements/nnstreamer-orc.h ../gst/nnstreamer/elements/nnstreamer-orc.orc
+Could not write output file: gst/nnstreamer/elements/nnstreamer-orc.h
+[2/197] Generating gst/nnstreamer/e...amer-orc.c.in with a custom command
+FAILED: gst/nnstreamer/elements/nnstreamer-orc.c.in 
+/usr/bin/orcc --include glib.h --implementation -o gst/nnstreamer/elements/nnstreamer-orc.c.in ../gst/nnstreamer/elements/nnstreamer-orc.orc
+Could not write output file: gst/nnstreamer/elements/nnstreamer-orc.c.in
+[3/197] Compiling C object gst/nnst...mer-single.so.p/nnstreamer_conf.c.o
+FAILED: gst/nnstreamer/libnnstreamer-single.so.p/nnstreamer_conf.c.o 
+cc -Igst/nnstreamer/libnnstreamer-single.so.p -Igst/nnstreamer -I../gst/nnstreamer -Igst/nnstreamer/include -I../gst/nnstreamer/include -I/usr/include/glib-2.0 -I/usr/lib/aarch64-linux-gnu/glib-2.0/include -fdiagnostics-color=always -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -Wextra -Werror -std=gnu89 -g '-DVERSION="2.4.2"' '-DVERSION_MAJOR="2"' '-DVERSION_MINOR="4"' '-DVERSION_MICRO="2"' -Wmissing-braces -Wmaybe-uninitialized -Wwrite-strings -Wformat -Wformat-nonliteral -Wformat-security -Winit-self -Waddress -Wno-multichar -Wvla -Wpointer-arith -Wmissing-declarations -Wmissing-include-dirs -Wmissing-prototypes -Wnested-externs -Waggregate-return -Wold-style-definition -Wdeclaration-after-statement '-DNNSTREAMER_CONF_FILE="/usr/local/etc/nnstreamer.ini"' -DGLIB_USE_G_MEMDUP2 -DHAVE_ORC=1 -DENABLE_FLATBUF=1 -DENABLE_PROTOBUF=1 -Wredundant-decls -D_ENABLE_SRC_IIO -fPIC -pthread -MD -MQ gst/nnstreamer/libnnstreamer-single.so.p/nnstreamer_conf.c.o -MF gst/nnstreamer/libnnstreamer-single.so.p/nnstreamer_conf.c.o.d -o gst/nnstreamer/libnnstreamer-single.so.p/nnstreamer_conf.c.o -c ../gst/nnstreamer/nnstreamer_conf.c
+../gst/nnstreamer/nnstreamer_conf.c:752:1: fatal error: opening dependency file gst/nnstreamer/libnnstreamer-single.so.p/nnstreamer_conf.c.o.d: Permission denied
+  752 | }
+      | ^
+compilation terminated.
+[4/197] Compiling C object gst/nnst...nnstreamer-single.so.p/hw_accel.c.o
+FAILED: gst/nnstreamer/libnnstreamer-single.so.p/hw_accel.c.o 
+cc -Igst/nnstreamer/libnnstreamer-single.so.p -Igst/nnstreamer -I../gst/nnstreamer -Igst/nnstreamer/include -I../gst/nnstreamer/include -I/usr/include/glib-2.0 -I/usr/lib/aarch64-linux-gnu/glib-2.0/include -fdiagnostics-color=always -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -Wextra -Werror -std=gnu89 -g '-DVERSION="2.4.2"' '-DVERSION_MAJOR="2"' '-DVERSION_MINOR="4"' '-DVERSION_MICRO="2"' -Wmissing-braces -Wmaybe-uninitialized -Wwrite-strings -Wformat -Wformat-nonliteral -Wformat-security -Winit-self -Waddress -Wno-multichar -Wvla -Wpointer-arith -Wmissing-declarations -Wmissing-include-dirs -Wmissing-prototypes -Wnested-externs -Waggregate-return -Wold-style-definition -Wdeclaration-after-statement '-DNNSTREAMER_CONF_FILE="/usr/local/etc/nnstreamer.ini"' -DGLIB_USE_G_MEMDUP2 -DHAVE_ORC=1 -DENABLE_FLATBUF=1 -DENABLE_PROTOBUF=1 -Wredundant-decls -D_ENABLE_SRC_IIO -fPIC -pthread -MD -MQ gst/nnstreamer/libnnstreamer-single.so.p/hw_accel.c.o -MF gst/nnstreamer/libnnstreamer-single.so.p/hw_accel.c.o.d -o gst/nnstreamer/libnnstreamer-single.so.p/hw_accel.c.o -c ../gst/nnstreamer/hw_accel.c
+../gst/nnstreamer/hw_accel.c:62:1: fatal error: opening dependency file gst/nnstreamer/libnnstreamer-single.so.p/hw_accel.c.o.d: Permission denied
+   62 | }
+      | ^
+compilation terminated.
+[5/197] Compiling C object gst/join/libgstjoin.so.p/gstjoin.c.o
+FAILED: gst/join/libgstjoin.so.p/gstjoin.c.o 
+cc -Igst/join/libgstjoin.so.p -Igst/join -I../gst/join -I/usr/include/glib-2.0 -I/usr/lib/aarch64-linux-gnu/glib-2.0/include -I/usr/include/gstreamer-1.0 -I/usr/include/aarch64-linux-gnu -fdiagnostics-color=always -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -Wextra -Werror -std=gnu89 -g '-DVERSION="2.4.2"' '-DVERSION_MAJOR="2"' '-DVERSION_MINOR="4"' '-DVERSION_MICRO="2"' -Wmissing-braces -Wmaybe-uninitialized -Wwrite-strings -Wformat -Wformat-nonliteral -Wformat-security -Winit-self -Waddress -Wno-multichar -Wvla -Wpointer-arith -Wmissing-declarations -Wmissing-include-dirs -Wmissing-prototypes -Wnested-externs -Waggregate-return -Wold-style-definition -Wdeclaration-after-statement '-DNNSTREAMER_CONF_FILE="/usr/local/etc/nnstreamer.ini"' -DGLIB_USE_G_MEMDUP2 -DHAVE_ORC=1 -DENABLE_FLATBUF=1 -DENABLE_PROTOBUF=1 -Wredundant-decls -D_ENABLE_SRC_IIO -fPIC -pthread -MD -MQ gst/join/libgstjoin.so.p/gstjoin.c.o -MF gst/join/libgstjoin.so.p/gstjoin.c.o.d -o gst/join/libgstjoin.so.p/gstjoin.c.o -c ../gst/join/gstjoin.c
+../gst/join/gstjoin.c:704:1: fatal error: opening dependency file gst/join/libgstjoin.so.p/gstjoin.c.o.d: Permission denied
+  704 | GST_PLUGIN_DEFINE (GST_VERSION_MAJOR,
+      | ^~~~~~~~~~~~~~~~~
+compilation terminated.
+[6/197] Compiling C object gst/nnst...amer-single.so.p/nnstreamer_log.c.o
+FAILED: gst/nnstreamer/libnnstreamer-single.so.p/nnstreamer_log.c.o 
+cc -Igst/nnstreamer/libnnstreamer-single.so.p -Igst/nnstreamer -I../gst/nnstreamer -Igst/nnstreamer/include -I../gst/nnstreamer/include -I/usr/include/glib-2.0 -I/usr/lib/aarch64-linux-gnu/glib-2.0/include -fdiagnostics-color=always -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -Wextra -Werror -std=gnu89 -g '-DVERSION="2.4.2"' '-DVERSION_MAJOR="2"' '-DVERSION_MINOR="4"' '-DVERSION_MICRO="2"' -Wmissing-braces -Wmaybe-uninitialized -Wwrite-strings -Wformat -Wformat-nonliteral -Wformat-security -Winit-self -Waddress -Wno-multichar -Wvla -Wpointer-arith -Wmissing-declarations -Wmissing-include-dirs -Wmissing-prototypes -Wnested-externs -Waggregate-return -Wold-style-definition -Wdeclaration-after-statement '-DNNSTREAMER_CONF_FILE="/usr/local/etc/nnstreamer.ini"' -DGLIB_USE_G_MEMDUP2 -DHAVE_ORC=1 -DENABLE_FLATBUF=1 -DENABLE_PROTOBUF=1 -Wredundant-decls -D_ENABLE_SRC_IIO -fPIC -pthread -MD -MQ gst/nnstreamer/libnnstreamer-single.so.p/nnstreamer_log.c.o -MF gst/nnstreamer/libnnstreamer-single.so.p/nnstreamer_log.c.o.d -o gst/nnstreamer/libnnstreamer-single.so.p/nnstreamer_log.c.o -c ../gst/nnstreamer/nnstreamer_log.c
+../gst/nnstreamer/nnstreamer_log.c:127:1: fatal error: opening dependency file gst/nnstreamer/libnnstreamer-single.so.p/nnstreamer_log.c.o.d: Permission denied
+  127 | }
+      | ^
+compilation terminated.
+[7/197] Compiling C object gst/join/libgstjoin.a.p/gstjoin.c.o
+FAILED: gst/join/libgstjoin.a.p/gstjoin.c.o 
+cc -Igst/join/libgstjoin.a.p -Igst/join -I../gst/join -I/usr/include/glib-2.0 -I/usr/lib/aarch64-linux-gnu/glib-2.0/include -I/usr/include/gstreamer-1.0 -I/usr/include/aarch64-linux-gnu -fdiagnostics-color=always -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -Wextra -Werror -std=gnu89 -g '-DVERSION="2.4.2"' '-DVERSION_MAJOR="2"' '-DVERSION_MINOR="4"' '-DVERSION_MICRO="2"' -Wmissing-braces -Wmaybe-uninitialized -Wwrite-strings -Wformat -Wformat-nonliteral -Wformat-security -Winit-self -Waddress -Wno-multichar -Wvla -Wpointer-arith -Wmissing-declarations -Wmissing-include-dirs -Wmissing-prototypes -Wnested-externs -Waggregate-return -Wold-style-definition -Wdeclaration-after-statement '-DNNSTREAMER_CONF_FILE="/usr/local/etc/nnstreamer.ini"' -DGLIB_USE_G_MEMDUP2 -DHAVE_ORC=1 -DENABLE_FLATBUF=1 -DENABLE_PROTOBUF=1 -Wredundant-decls -D_ENABLE_SRC_IIO -fPIC -pthread -MD -MQ gst/join/libgstjoin.a.p/gstjoin.c.o -MF gst/join/libgstjoin.a.p/gstjoin.c.o.d -o gst/join/libgstjoin.a.p/gstjoin.c.o -c ../gst/join/gstjoin.c
+../gst/join/gstjoin.c:704:1: fatal error: opening dependency file gst/join/libgstjoin.a.p/gstjoin.c.o.d: Permission denied
+  704 | GST_PLUGIN_DEFINE (GST_VERSION_MAJOR,
+      | ^~~~~~~~~~~~~~~~~
+compilation terminated.
+[8/197] Compiling C object gst/nnst...ingle.so.p/nnstreamer_subplugin.c.o
+FAILED: gst/nnstreamer/libnnstreamer-single.so.p/nnstreamer_subplugin.c.o 
+cc -Igst/nnstreamer/libnnstreamer-single.so.p -Igst/nnstreamer -I../gst/nnstreamer -Igst/nnstreamer/include -I../gst/nnstreamer/include -I/usr/include/glib-2.0 -I/usr/lib/aarch64-linux-gnu/glib-2.0/include -fdiagnostics-color=always -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -Wextra -Werror -std=gnu89 -g '-DVERSION="2.4.2"' '-DVERSION_MAJOR="2"' '-DVERSION_MINOR="4"' '-DVERSION_MICRO="2"' -Wmissing-braces -Wmaybe-uninitialized -Wwrite-strings -Wformat -Wformat-nonliteral -Wformat-security -Winit-self -Waddress -Wno-multichar -Wvla -Wpointer-arith -Wmissing-declarations -Wmissing-include-dirs -Wmissing-prototypes -Wnested-externs -Waggregate-return -Wold-style-definition -Wdeclaration-after-statement '-DNNSTREAMER_CONF_FILE="/usr/local/etc/nnstreamer.ini"' -DGLIB_USE_G_MEMDUP2 -DHAVE_ORC=1 -DENABLE_FLATBUF=1 -DENABLE_PROTOBUF=1 -Wredundant-decls -D_ENABLE_SRC_IIO -fPIC -pthread -MD -MQ gst/nnstreamer/libnnstreamer-single.so.p/nnstreamer_subplugin.c.o -MF gst/nnstreamer/libnnstreamer-single.so.p/nnstreamer_subplugin.c.o.d -o gst/nnstreamer/libnnstreamer-single.so.p/nnstreamer_subplugin.c.o -c ../gst/nnstreamer/nnstreamer_subplugin.c
+../gst/nnstreamer/nnstreamer_subplugin.c:394:1: fatal error: opening dependency file gst/nnstreamer/libnnstreamer-single.so.p/nnstreamer_subplugin.c.o.d: Permission denied
+  394 | }
+      | ^
+compilation terminated.
+[9/197] Compiling C object gst/nnst...nnstreamer_plugin_api_util_impl.c.o
+FAILED: gst/nnstreamer/libnnstreamer-single.so.p/nnstreamer_plugin_api_util_impl.c.o 
+cc -Igst/nnstreamer/libnnstreamer-single.so.p -Igst/nnstreamer -I../gst/nnstreamer -Igst/nnstreamer/include -I../gst/nnstreamer/include -I/usr/include/glib-2.0 -I/usr/lib/aarch64-linux-gnu/glib-2.0/include -fdiagnostics-color=always -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -Wextra -Werror -std=gnu89 -g '-DVERSION="2.4.2"' '-DVERSION_MAJOR="2"' '-DVERSION_MINOR="4"' '-DVERSION_MICRO="2"' -Wmissing-braces -Wmaybe-uninitialized -Wwrite-strings -Wformat -Wformat-nonliteral -Wformat-security -Winit-self -Waddress -Wno-multichar -Wvla -Wpointer-arith -Wmissing-declarations -Wmissing-include-dirs -Wmissing-prototypes -Wnested-externs -Waggregate-return -Wold-style-definition -Wdeclaration-after-statement '-DNNSTREAMER_CONF_FILE="/usr/local/etc/nnstreamer.ini"' -DGLIB_USE_G_MEMDUP2 -DHAVE_ORC=1 -DENABLE_FLATBUF=1 -DENABLE_PROTOBUF=1 -Wredundant-decls -D_ENABLE_SRC_IIO -fPIC -pthread -MD -MQ gst/nnstreamer/libnnstreamer-single.so.p/nnstreamer_plugin_api_util_impl.c.o -MF gst/nnstreamer/libnnstreamer-single.so.p/nnstreamer_plugin_api_util_impl.c.o.d -o gst/nnstreamer/libnnstreamer-single.so.p/nnstreamer_plugin_api_util_impl.c.o -c ../gst/nnstreamer/nnstreamer_plugin_api_util_impl.c
+../gst/nnstreamer/nnstreamer_plugin_api_util_impl.c:1623:1: fatal error: opening dependency file gst/nnstreamer/libnnstreamer-single.so.p/nnstreamer_plugin_api_util_impl.c.o.d: Permission denied
+ 1623 | }
+      | ^
+compilation terminated.
+[10/197] Compiling C object gst/nns...sor_filter_tensor_filter_single.c.o
+FAILED: gst/nnstreamer/libnnstreamer-single.so.p/tensor_filter_tensor_filter_single.c.o 
+cc -Igst/nnstreamer/libnnstreamer-single.so.p -Igst/nnstreamer -I../gst/nnstreamer -Igst/nnstreamer/include -I../gst/nnstreamer/include -I/usr/include/glib-2.0 -I/usr/lib/aarch64-linux-gnu/glib-2.0/include -fdiagnostics-color=always -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -Wextra -Werror -std=gnu89 -g '-DVERSION="2.4.2"' '-DVERSION_MAJOR="2"' '-DVERSION_MINOR="4"' '-DVERSION_MICRO="2"' -Wmissing-braces -Wmaybe-uninitialized -Wwrite-strings -Wformat -Wformat-nonliteral -Wformat-security -Winit-self -Waddress -Wno-multichar -Wvla -Wpointer-arith -Wmissing-declarations -Wmissing-include-dirs -Wmissing-prototypes -Wnested-externs -Waggregate-return -Wold-style-definition -Wdeclaration-after-statement '-DNNSTREAMER_CONF_FILE="/usr/local/etc/nnstreamer.ini"' -DGLIB_USE_G_MEMDUP2 -DHAVE_ORC=1 -DENABLE_FLATBUF=1 -DENABLE_PROTOBUF=1 -Wredundant-decls -D_ENABLE_SRC_IIO -fPIC -pthread -MD -MQ gst/nnstreamer/libnnstreamer-single.so.p/tensor_filter_tensor_filter_single.c.o -MF gst/nnstreamer/libnnstreamer-single.so.p/tensor_filter_tensor_filter_single.c.o.d -o gst/nnstreamer/libnnstreamer-single.so.p/tensor_filter_tensor_filter_single.c.o -c ../gst/nnstreamer/tensor_filter/tensor_filter_single.c
+../gst/nnstreamer/tensor_filter/tensor_filter_single.c:435:1: fatal error: opening dependency file gst/nnstreamer/libnnstreamer-single.so.p/tensor_filter_tensor_filter_single.c.o.d: Permission denied
+  435 | }
+      | ^
+compilation terminated.
+ninja: build stopped: subcommand failed.
